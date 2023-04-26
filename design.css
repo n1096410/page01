@@ -114,6 +114,7 @@ ul li ul{ display:none;position: absolute;}
 	background: #191919 url(img/nav_hover.gif);
 }
 
+
 /* sub-navigation */
 .subnav {
 	background: #2A2A2A;
@@ -278,3 +279,23 @@ h2 {
   background-color: #6E6E6E;
   color: white;
  } 
+ .login {
+  height: 400px;
+  width: 250px;
+
+
+ }
+ .login001 {
+  width: 400px;
+  height: 300px;
+  right: 0;
+  left: auto;
+  padding-left:70px ;
+ }
+
+ /* .login {
+  background-color: white;
+  font-size: 20px;
+  display: flex;
+  height: 100px;
+} */

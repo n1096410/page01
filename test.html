@@ -48,6 +48,17 @@
             </ul>
 -->
            </li>
+           <li onmouseover="displaySubMenu(this)" onmouseout="hideSubMenu(this)"><a href="#">登入</a>
+            <ul class="login001">
+              <div class="login">
+                <p>帳號</p><input type="tel" name="user" size="12" maxlength="8" placeholder="請輸入姓名">
+                <p>密碼</p><input type="password" name="password" size="12" maxlength="8" placeholder="請輸入密碼"><br>
+                <button type="button">送出</button>
+                <button type="button">修改密碼</button>
+              </div>
+          </ul>
+         </li>
+            </li>
         </ul>
       </nav>
     </header>  
@@ -122,9 +133,15 @@
           <p><u>消息三</u></p><br>
           <p>消息內容</p>
         </div>
-
       </div>
-             
+    <!-- <div class="biglogin">
+      <div class="login">
+        <p>帳號</p><input type="tel" name="user" size="12" maxlength="8" placeholder="請輸入姓名">
+        <p>密碼</p><input type="password" name="password" size="12" maxlength="8" placeholder="請輸入密碼">
+        <button type="button" class="prompttest">送出</button>
+        <input class='prompttest' type="button" value="按我">
+      </div>
+    </div>          -->
     </main>
     <footer>
       <p>台南下營 鋐茶鵝-版權所有</p>
@@ -206,5 +223,8 @@ function showSlides(n) {
     slides[slideIndex-1].style.display = "block";
     dots[slideIndex-1].className += " active";
     }
+  
+  
+
   </script>
 </html>
