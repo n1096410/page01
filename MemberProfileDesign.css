@@ -1,0 +1,204 @@
+.navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #86848497; /* 背景顏色 */
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* 陰影 */
+  }
+  
+  .navbar-brand {
+    font-size: 1.5rem; /* LOGO字體大小 */
+    font-weight: bold; /* LOGO字體粗細 */
+  }
+  
+  .navbar-nav {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .navbar-nav .nav-item {
+    margin-right: 1rem;
+  }
+  .navbar-nav li {
+    display: flex;
+    align-items: center;
+  }
+  
+  .navbar-nav .nav-link {
+    color: #333; /* 鏈接文字顏色 */
+    font-size: 1.1rem; /* 鏈接字體大小 */
+    font-weight: 500; /* 鏈接字體粗細 */
+  }
+  
+  .container-fluid {
+    padding: 0;
+  }
+  /* 常規底線 */
+
+  
+  .row {
+    margin: 0;
+  }
+  
+  .col-8 {
+    padding: 0;
+  }
+  
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  
+  
+  .list-unstyled .li {
+    margin-bottom: 10px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    
+  }
+  .navbar-nav .nav-link:hover {
+    color: #007bff; /* 鼠標懸停時的顏色 */
+    
+  }
+  .avatar {
+    width: 30px; /* 圖片寬度 */
+    height: 30px; /* 圖片高度 */
+    border-radius: 50%; /* 設置圓角半徑為50% */
+    
+  }
+
+  .circle-image {
+    margin: 30px;
+    width: 150px; /* 圖片寬度 */
+    height: 150px; /* 圖片高度 */
+    border-radius: 50%;
+    border: 2px solid black;
+  }
+  .change-avatar-btn {
+    margin: 30px;
+    width: 150px; /* 圖片寬度 */
+    height: 50px; /* 圖片高度 */
+    border: 2px solid rgba(255, 255, 255, 0.363);
+    background-color: rgba(0, 0, 0, 0.363);
+  }
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+  }
+
+  
+  .list-unstyled li a{
+    text-decoration: none;
+    color:black;
+  } 
+
+  .list-unstyled li a:hover {
+    color:rgb(0, 47, 255);
+  }
+  
+ li li {
+  border-top: 1px solid black;
+  margin: 10px;
+  padding: 0;
+}
+
+.list-container {
+  margin: 20px;
+  width: 200px; /* 設定固定高度 */
+}
+
+.left {
+  width: 25%;
+  background-color: #f2f2f2;
+  min-width: 250px;
+}
+.right {
+  width: 75%;
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  justify-content: center,top;
+}
+
+.container {
+  display: flex;
+  height: 100vh;
+}
+
+.footer {
+    position: absolute;
+    width: 100%;
+    height: 100px; /* 如果有需要，可以調整高度 */
+    background-color: #86848497;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 35px 50px;
+  }
+  
+
+
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  .circle-imaged {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+  }
+  
+  .footer > div:first-child {
+    margin-right: 20px;
+  }
+  
+  .about,
+  .shopping,
+  .contact {
+    width: 250px;
+  }
+  
+  @media only screen and (max-width: 768px) {
+    .about,
+    .shopping,
+    .contact {
+      width: 100%;
+      margin-top: 20px;
+    }
+  }
+/*footer*/
+  .form-row {
+    display: flex; /* 設定 display 屬性為 flex 以啟用 Flexbox 佈局 */
+    flex-direction: row; /* 設定 flex-direction 屬性為 row 以橫向排列 */
+  }
+  
+  .form-group {
+    flex: 1; /* 設定 flex 屬性為 1 以讓每個欄位佔據相同的寬度 */
+    margin-right: 10px; /* 設定 margin-right 屬性為 10px 以讓欄位之間保持一定的間距 */
+  }
+  
+  .form-group:last-child {
+    margin-right: 0; /* 設定最後一個欄位的 margin-right 屬性為 0 以消除右邊距 */
+  }
+  
+  input {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  input:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  }

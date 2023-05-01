@@ -3,6 +3,9 @@
   margin-right: 750px;
   margin-top:0px;
 }
+body {
+  background: #FFFF59;
+}
 .headsize{    /*頁首大小*/
   width: 2000px;
   margin: 0 auto;
@@ -12,7 +15,7 @@
   position: fixed;
   width: 100% ;    
   padding: 20px;
-  background-color: 	#FFF;
+  background: #FFFF59;
   top: 0px;
   display: flex;
   justify-content: space-between;
@@ -28,6 +31,7 @@
   justify-content: space-between;
   position: relative;
   right: 10%;
+  height: 20px;
 }
 
 .menu li{
@@ -115,19 +119,20 @@ header li a{
 footer{
     margin: 0;
     /* background-color: cornflowerblue; */
-    background: repeating-linear-gradient(70deg,#737373 0%,#9C9C9C 33%,#C4C4C4 66%,#EDEDED 100%);
-    color: white;
+    background: #FFFF59;
+    color:  #696969;
     font-size: 20px;
     display: flex;
     height: 100px;
+    width: 100%;
     align-items: center;
     justify-content: center;
     z-index: 99;
 }
 main {
-  /* height: 850px; */
+  background-color: #FFFF59;
 }
-#nav{ width:600px; height:40px; background-color:#eee; margin:0 auto;}
+#nav{ width:600px; height:20px; background-color:#eee; margin:0 auto;}
 ul{ list-style:none;}
 ul li
 { float:left; 
@@ -162,7 +167,7 @@ ul li ul{ display:none;position: absolute;}
 	color: #CCC;
 	float: left;
 	font: bold 1em Verdana,sans-serif;
-	line-height: 51px;
+	line-height: 20px;
 	padding: 0 20px;
 }
 .nav a:hover {
@@ -337,16 +342,8 @@ h2 {
  .login {
   height: 400px;
   width: 250px;
-
-
  }
- .login001 {
-  width: 400px;
-  height: 300px;
-  right: 0;
-  left: auto;
-  padding-left:70px ;
- }
+
 
  /* .login {
   background-color: white;
@@ -354,3 +351,55 @@ h2 {
   display: flex;
   height: 100px;
 } */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 999;
+}
+/* 登入框 */
+.modal-content {
+  background-color: #fefefe;
+  margin: 10% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 400px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -80%);
+}
+/* 關閉按鈕 */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+/* 登入按鈕 */
+.login-button {
+  background-color: #4caf50;
+  border: none;
+  color: white;
+  padding: 12px 24px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+}
