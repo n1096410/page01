@@ -1,0 +1,67 @@
+.qanda_div1 {
+    width: 60%;
+    height: 50px;
+    background-color: lightgreen;
+    left: 20%;
+    right: 20%;
+    position: relative;
+    top: 250px;
+}
+
+.qanda_div1 p {
+    position: absolute;
+    top: 1%;
+    bottom: 1%;
+    left: 10%;
+    text-align: left;
+}
+.qanda_main {
+    position: relative;
+    top: 300px;
+    height: 700px;
+    text-align: center;
+    font-size: 24px;
+}
+.qanda_footer {
+    position: absolute;
+    top: 1400px;
+    width: 100%;
+    left: 0;
+    right: 0;
+    margin-left: 0;
+    margin-right: 0;
+}
+.avatar {
+    width: 25px; /* 圖片寬度 */
+    height: 25px; /* 圖片高度 */
+    border-radius: 50%; /* 設置圓角半徑為50% */
+    
+  }
+@media only screen and (max-width: 1300px){
+    .qanda_footer {
+        position: absolute;
+        bottom: 0%;
+    }
+    body {
+        height: 80vh;
+    }
+    html {
+        height: 80vh;
+    }
+    .qanda_main {
+        position: relative;
+        top: 300px;
+        height: 1200px;
+        text-align: center;
+        font-size: 24px;
+    }
+}
+@media only screen and (min-height: 2300px)and (max-width: 1300px){
+    .qanda_main {
+        position: relative;
+        top: 300px;
+        height: 1400px;
+        text-align: center;
+        font-size: 24px;
+    }
+}

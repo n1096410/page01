@@ -33,7 +33,6 @@
   
   .Profile-li {
     display: inline-block;
-    margin-left: 0;
   }
   .container-fluid {
     padding: 0;
@@ -84,11 +83,10 @@
     
   }
 
-  .circle-image {
+  .square-image {
     margin: 30px;
-    width: 150px; /* 圖片寬度 */
-    height: 150px; /* 圖片高度 */
-    border-radius: 50%;
+    width: 300px; /* 圖片寬度 */
+    height: 300px; /* 圖片高度 */
     border: 2px solid black;
   }
   .change-avatar-btn {
@@ -105,7 +103,6 @@
     background-color: #333;
     color: #fff;
     padding: 20px;
-    top: 100%;
   }
 
   
@@ -154,7 +151,6 @@
 
 .MemberProfilefooter {
     position: absolute;
-    left: 0;
     width: 100%;
     height: 250px; /* 如果有需要，可以調整高度 */
     background-color: #86848497;
@@ -171,19 +167,6 @@
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 100%;
-    height: 250px;
-    flex-wrap: wrap;
-    background-color: #86848497;
-    opacity: 1;
-    color: #fff;
-    padding: 20px;
-    margin-left: 0;
-    margin-right: 0;
   }
   
   .circle-imaged {
@@ -217,14 +200,14 @@
   .contact li {
     text-align: left;
   }
-  /* @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 768px) {
     .about,
     .shopping,
     .contact {
       width: 100%;
       margin-top: 20px;
     }
-  } */
+  }
 /*footer*/
   .form-row {
     display: flex; /* 設定 display 屬性為 flex 以啟用 Flexbox 佈局 */
@@ -250,19 +233,3 @@
     border-color: #007bff;
     box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
   }
-
-  @media only screen and (max-width: 1300px) {
-    .MemberProfilefooter{
-      height: 300px;
-      display: flex;
-      justify-content: center;
-      bottom: 0;
-    }
-    .container {
-      height: 70%;
-    }
-    body {
-      height: 70%;
-    }
-  }
-  

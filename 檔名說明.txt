@@ -1,0 +1,19 @@
+ADD member.php 新增資料後頁面
+
+chang.php 主要頁面
+
+delete_form.php  刪除頁面
+
+member.php  新增資料頁面
+
+show_form.php 登入後頁面
+
+submit_form.php
+
+newstyle.css 樣式
+
+shoppingpage 商品頁面
+
+MmeberProfile 會員專區-修改會員資料
+
+Memberset 會員專區-修改密碼頁面

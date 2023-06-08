@@ -1,7 +1,12 @@
+html, body {
+  height: 100%;
+}
+
 .logo{
-  margin-left: 150px; /*LOGO圖距離頁面左邊框的距離,越大離越遠*/
-  margin-right: 750px;
+  margin-left: 20px; /*LOGO圖距離頁面左邊框的距離,越大離越遠*/
   margin-top:0px;
+  width: 50%;
+  height: 30%;
 }
 body {
   background: #FFFF59;
@@ -15,8 +20,9 @@ body {
   position: fixed;
   width: 100% ;    
   padding: 20px;
-  background: #FFFF59;
+  background: #FFFFFF;
   top: 0px;
+  left: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -29,15 +35,9 @@ body {
   display: flex;
   padding: 30px;
   justify-content: space-between;
-  position: relative;
+  /* position: relative;
   right: 10%;
-  height: 20px;
-}
-
-.menu li{
-  position: relative;
-  right: 350px;   /*導覽列靠近頁首logo的距離，越大越靠近*/
-  
+  height: 20px; */
 }
 
 
@@ -55,6 +55,11 @@ body {
   background-color: #00A600;
 }
 
+.menu li marker {
+  position: relative;
+  top: 100px;
+}
+
 
 h1{
     display: flex;
@@ -62,9 +67,8 @@ h1{
     box-sizing: border-box;
     font-size: 40px;
     border: 1px white;
-    color: white;
+    color: black;
     /* background-color: cornflowerblue; */
-    background: repeating-linear-gradient(70deg,#737373 0%,#9C9C9C 33%,#C4C4C4 66%,#EDEDED 100%);
     height: 80px;
     margin: 0;
     padding: 30px;
@@ -108,6 +112,7 @@ header li a{
   position: fixed;
   bottom: 100px;
   right: 10px;
+  z-index: 999;
 }
 .sidebar001 img {
   margin-bottom: 10px;
@@ -116,9 +121,8 @@ header li a{
   background-color: transparent;
 }
 
-footer{
+/* footer{
     margin: 0;
-    /* background-color: cornflowerblue; */
     background: #FFFF59;
     color:  #696969;
     font-size: 20px;
@@ -128,10 +132,87 @@ footer{
     align-items: center;
     justify-content: center;
     z-index: 99;
+} */
+
+footer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 250px;
+  display: flex;
+  /* justify-content: space-between; */
+  align-items: center;
+  flex-wrap: wrap;
+  /* background-color: #333; */
+  background-color: #86848497;
+  opacity: 1;
+  color: #fff;
+  padding: 20px;
+  margin-left: 0;
+  margin-right: 0;
 }
+
+/* footer > div:first-child {
+  margin-right: 20px;
+} */
+
+.footer-size {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 550px;
+}
+
+.about ,
+  .shopping ,
+  .contact  {
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .about ul,
+  .shopping ul,
+  .contact ul {
+    display: flex;
+    flex-direction: column;   /* 直向排版 */
+ 
+  }
+
+  .about li,
+  .shopping li,
+  .contact li {
+    text-align: left;
+  }
+  
+
+.circle-image {
+  margin: 30px;
+  width: 150px; /* 圖片寬度 */
+  height: 150px; /* 圖片高度 */
+  border-radius: 50%;
+  border: 2px solid black;
+}
+
+.circle-imaged {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+
+  .change-avatar-btn {
+    margin: 30px;
+    width: 150px; /* 圖片寬度 */
+    height: 50px; /* 圖片高度 */
+    border: 2px solid rgba(255, 255, 255, 0.363);
+    background-color: rgba(0, 0, 0, 0.363);
+  }  
 main {
   background-color: #FFFF59;
+  
 }
+
 #nav{ width:600px; height:20px; background-color:#eee; margin:0 auto;}
 ul{ list-style:none;}
 ul li
@@ -139,6 +220,18 @@ ul li
 line-height:40px;
 text-align:center;
 width:100px;
+}
+
+#hellomember {
+  width: 160px;
+}
+
+#memberroom {
+  width: 160px;
+}
+
+#logout {
+  width: 160px;
 }
 /* a{ text-decoration:none; color:#000; display:block;}
 a:hover{ color:#000; background-color:#6e6e6e;} */
@@ -219,6 +312,8 @@ ul li ul{ display:none;position: absolute;}
 
 #d1 {
   top: 130px;
+  left: 0;
+  right: 0;
 }
 
 
@@ -323,6 +418,30 @@ h2 {
 }
 .news {
   display: flex;
+  flex-direction: row;
+  width: 90%;
+  margin: 0 auto;
+}
+.newstext {
+  width: 65%;
+  /* margin-left: 16px; */
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-right: 16px;
+  text-align: left;
+  border:  solid black;
+  padding-left: 16px;
+}
+/* .newstext nobr {
+  display: inline-block;
+} */
+.newstext p {
+  display: inline-block;
+  margin-right: 10px;
+  padding-right: 10px;
+}
+.hots {
+  display: flex;
   margin-left: 100px;
   margin-right: 100px;
   justify-content: space-between;
@@ -331,7 +450,7 @@ h2 {
   /* border: 1px solid black; */
   /* border: 2px black; */
 }
-.news div {
+.hots div {
   border: 2px solid black;
   width: 250px;
   height: 350px;
@@ -402,4 +521,105 @@ h2 {
   margin: 4px 2px;
   cursor: pointer;
   border-radius: 4px;
+}
+/* 登入按鈕做橫向排版的div */
+.big-login-button {
+  display: flex;
+  flex-direction: row;
+}
+
+/* 下面開始是RWD設定 */
+
+@media only screen and (max-width: 1300px) {
+  .headsize{    /*頁首大小*/
+    width: 100%;
+    margin: 0 auto;
+  }
+  .header {
+    padding: 5px;
+    display: flex;
+    justify-content: left;
+  }
+  
+  #header_a{
+    display: block;
+    width: 300px;
+  }
+  .header {
+    height: 180px;
+  }
+  .logo{
+    width: 60%;
+    height: 30%;
+  }
+  .menu {
+    padding: 5px;
+  }
+  .menu li {
+    font-size: 12px;
+    width: 70px;
+  }
+  .menu li a{    /*導覽列超連結設定*/
+    padding: 5px;
+  }
+  #hellomember {
+    width: 120px;
+  }
+  
+  #memberroom {
+    width: 120px;
+  }
+  
+  #logout {
+    width: 120px;
+  }
+  nav {
+    position: relative;
+    right: 20;
+  }
+  .about,
+  .shopping,
+  .contact {
+    /* width: 100%;
+    margin-top: 20px; */
+    width: 33.33%;
+    margin-top: 20px;
+  }
+  .sidebar001 {
+    bottom: 200px;
+  }
+  footer {
+    height: 300px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    bottom: 0;
+  }
+  .footer-size {
+    display: flex;
+    flex-direction: row;
+    margin-left:150px;
+  }
+}
+
+@media only screen and (min-height: 2300px)and (max-width: 1300px){
+  .logo {
+    width: 60%;
+    height: 40%;
+    margin-left: 30px;
+  }
+  .sidebar001 {
+    bottom: 15%;
+  }
+  footer {
+    height: 400px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    bottom: 0;
+    font-size: 20px;
+  }
+  .header {
+    height: 200px;
+  }
 }

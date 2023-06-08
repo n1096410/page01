@@ -1,0 +1,88 @@
+.contact_us_div1 {
+    width: 60%;
+    height: 50px;
+    background-color: lightgreen;
+    left: 20%;
+    right: 20%;
+    position: relative;
+    top: 250px;
+}
+
+.contact_us_div1 p {
+    position: absolute;
+    top: 1%;
+    bottom: 1%;
+    left: 10%;
+    text-align: left;
+}
+
+.contact_us_main {
+    display: flex;
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    right: 10%;
+    width:80%
+
+}
+
+.information {
+    flex: 1;
+    text-align: center;
+}
+
+.fbandline {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.fbandline img {
+    width: 40px;
+    height: 40px;
+}
+
+.contact_form {
+    flex: 1;
+    text-align: center;
+}
+
+.contact_form table {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.contact_table {
+    display: flex;
+    flex-direction: row;
+}
+
+#question {
+    height: 100px;
+}
+
+.contact_us_map {
+    position: absolute;
+    top: 95%;
+    left: 15%;
+    right: 15%;
+    width: 70%;
+     height: 40%;
+}
+
+.contact_us_footer {
+    position: absolute;
+    top: 1400px;
+    width: 100%;
+    left: 0;
+    right: 0;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.avatar {
+    width: 25px; /* 圖片寬度 */
+    height: 25px; /* 圖片高度 */
+    border-radius: 50%; /* 設置圓角半徑為50% */
+    
+  }

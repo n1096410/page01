@@ -6,11 +6,10 @@ $account = $_SESSION['account'];
 <!DOCTYPE html>
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">  
-<!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
-<meta name="viewport" content="width=1024">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="image/logoicon.ico" rel="shortcut icon"/>
 <link rel="stylesheet" type="text/css" href="newstyle.css?version=<?php echo time(); ?>">
-<link rel="stylesheet" type="text/css" href="MemberProfileDesign.css?version=<?php echo time(); ?>">
+<link rel="stylesheet" type="text/css" href="MemberSet.css?version=<?php echo time(); ?>">
 <html>
 <head>
 
@@ -18,28 +17,29 @@ $account = $_SESSION['account'];
 <body>
 <div class="headesize">
   <div class="header wrap">
-    <a id="header_a" href="chang.php">
-    <img class="logo" img src="image/headlogo.png" width="60%">
-    </a>
-
+  <a href="chang.php"><img class="logo" src="image/headlogo.png"></a>
     <!-- <img class="logo" src="image/headlogo.png" width="25%"> -->
     <nav>
-        <ul class="menu"><!-- <span class="username"></span> -->
+        <ul class="menu">
             <li><a href="#">關於我們</a></li>
             <li><a href="#">商品總覽</a></li>
             <li><a href="#">線上訂購</a></li>
             <li><a href="#">常見問題</a></li>
             <li><a href="#">聯絡我們</a></li>
-            <li id="hellomember" onmouseover="displaySubMenu(this)" onmouseout="hideSubMenu(this)">
-                <a href="#"><img class="avatar" src="image\S__48398348.jpg" alt="Avatar"><?php echo $account; ?>會員您好</a>
-                  <ul>
-                    <li id="memberroom"><a href="MemberProfile.php">會員專區</a></li>
-                    <li id="logout"><a href="chang.php">登出</a></li>
-                  </ul>
-                </li>
+            <li onmouseover="displaySubMenu(this)" onmouseout="hideSubMenu(this)" style="width: 180px;">
+              <!-- <div class="Profile-li">       -->
+              <a href="#"><img class="avatar" src="image\S__48398348.jpg" alt="Avatar">
+              <?php echo $account; ?> 會員您好!</a>        
+              <span class="username"></span>
+                <ul>
+                  <li style="width: 160px;"><a href="MemberProfile.php">會員專區</a></li>
+                  <li style="width: 160px;"><a href="chang.php">登出</a></li>
+                </ul>
+              <!-- </div> -->
+            </li>
             <li button onclick="document.getElementById('shoppingcart').style.display='block'" style="width: 160px;">
             <a href="#"><img src="../image/shoppingcart.png" alt="shopping.png">購物車</a></li>
-            <!-- <li>
+            <!-- <li class="nav-item">
               <a href="yourpage.html">
               <img class="avatar" src="image\S__48398348.jpg" alt="Avatar">
               </a>
@@ -105,51 +105,41 @@ $account = $_SESSION['account'];
       <br><br><br>
         <table>
         <tr>
-            <td style=" text-align: center;">
-              <img class="circle-image" src="image\S__48398348.jpg" alt="Avatar">
-                <div class="avatar-upload">
-                <button class="change-avatar-btn" onclick="changeAvatar()"><a href="#">更換頭貼</a></button>
-                </div> 
-            </td>
+          <h1>修改密碼</h1>
             <td>
             <table style="border-spacing: 10px; ">
                 <tr>
-                  <td>姓名</td>
+                  <td>舊密碼</td>
                   <td><input type="text" id="name" name="name" ></td>
                 </tr>
                 <tr>
-                  <td>性別</td>
+                  <td>新密碼</td>
                   <td><input type="text" id="gender" name="gender" ></td>
                 </tr>
                 <tr>
-                  <td>生日</td>
+                  <td>確認密碼</td>
                   <td><input type="text" id="birthday" name="birthday" ></td>
-                </tr>
-                <tr>
-                  <td>電子信箱</td>
-                  <td><input type="text" id="email" name="email"></td>
                 </tr>
             </table>       
               <br>
-              <button><a>修改資料</a></button>
+              <button><a>確認修改</a></button>&nbsp;&nbsp;&nbsp;&nbsp;<button><a>取消</a></button>
+            </td>
+            <td style=" text-align: center;">
+              <img class="square-image" src="image\S__48398348.jpg" alt="Avatar">
+                <div class="avatar-upload">
+                
+                </div> 
             </td>
         </tr>
       </table>         
     </div>
 </div>
-<div class="sidebar001">
-      <a href="https://www.facebook.com.tw/"><img src="../image/Facebook_icon.png" style="width: 40px;height:40px;" ></a>
-      <a href="https://www.instagram.com/"><img src="../image/Instagram.png" style="width: 40px;height:40px;"></a>
-      <a href="https://line.me/zh-hant/"><img src="../image/LINE_logo.png" style="width: 40px;height:40px;"></a>
-      <a href="#" class="gotop"><img src="../image/up.png" style="width: 40px;height:40px;"></a>
-</div>
 
 </body>
-<footer class="MemberProfilefooter">
+<footer class="MemberProfilefooter" style="top:100%;">
   <div>
   <img class="circle-imaged" src="image\S__48398348.jpg" alt="Avatar">
   </div>
-  <div class="footer-size">
   <div class="about">
     <h3>關於我們</h3>
     <ul>
@@ -174,7 +164,6 @@ $account = $_SESSION['account'];
       <li><a href="#">線上諮詢</a></li>
     </ul>
   </div>
-</div>
 </footer>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script>

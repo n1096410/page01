@@ -6,7 +6,7 @@ $mysqli = new mysqli("localhost", "root", "", "test");
 if ($mysqli->connect_error) {
     die("连接失败: " . $mysqli->connect_error);
 }
-if(!empty($_POST['account']) && !empty($_POST['password'])) {
+
 // 从表单中获取用户输入的数据
 $account = $_POST['account'];
 $password = $_POST['password'];
@@ -27,7 +27,4 @@ if ($result->num_rows > 0) {
     }*/
 } else {
     echo "登入失敗";
-}
-}else {
-    echo "表單不可空白";
 }
