@@ -1,0 +1,240 @@
+
+
+.container {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+.fullwidth-block {
+    padding: 30px 0;
+  }
+
+.inner-content {
+    padding: 30px 0;
+  }
+
+.section-title {
+    margin: 0 0 30px;
+    color:#000;
+    font-weight: 600;
+    text-align: center;
+  }
+
+/* 置中second-title */
+.quest-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 橘底白字中標題 */
+.section-second-title {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 0 0 15px 0;
+    color: #fff;
+    font-weight: 600;
+    background-color: #FE7F2D;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    position: relative;
+    text-align: center;
+}
+
+
+.accordion {
+    overflow: hidden;
+    border-top: 3px solid #fedc0082;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+.accordion .accordion-toggle {
+    position: relative;
+    padding: 10px  30px 10px 0;
+  }
+
+.accordion .accordion-toggle h3 {
+    display: inline-block;
+    margin: 0 20px 0 0;
+    vertical-align: middle;
+    color: black;
+    font-size: 18px;
+    font-size: 1.125rem;
+  }
+
+
+.accordion .accordion-content p {
+  padding: 5px;
+  background-color: #e7e3db;
+  border-radius: 4px;
+}
+
+
+/* ＱＡ問題ＲＷＤ */
+
+@media screen and (max-width: 767px) {
+    .accordion .accordion-toggle h3 {
+      display: block;
+    }
+  }
+.accordion .accordion-toggle span {
+    font-size: 14px;
+    font-size: 0.875rem;
+  }
+.accordion .accordion-toggle:after {
+    content: "\f107";
+    font-family: "FontAwesome";
+    text-align: center;
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 10px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #e7e3db;
+    cursor: pointer;
+    line-height: 30px;
+  }
+
+.accordion.expanded .accordion-toggle:after {
+  content: "\f106";
+  line-height: 1.8;
+}
+.accordion .accordion-content {
+    display: none;
+    clear: both;
+    font-size: 16px;
+    font-size: 1rem;
+    padding: 10px 50px ;
+  }
+
+.accordion .accordion-content h5 {
+  text-align: center;
+}
+
+.date{
+    margin-right:5px;
+  }
+
+/* 運費表格樣式 */
+
+.table-wrapper {
+  margin: 30px;
+  box-shadow: 0px 35px 50px rgba(86, 46, 11, 0.1);
+  background-color: transparent;
+}
+
+.fee-table {
+  border-collapse: collapse;
+  width: 100%;
+  background-color: transparent;
+}
+
+.fee-table thead {
+  border-bottom: 3px solid #ddd;
+  background-color: #ffc107;
+  color: white;
+  text-shadow: 0 0 1px #000;
+}
+
+.fee-table th:nth-child(2) {
+  background-color: #fede00;
+}
+
+.fee-table tr {
+  border-bottom: 1px solid #ddd;
+}
+
+.fee-table td,
+.fee-table th {
+  text-align: center;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+/* 運費表格ＲＷＤ */
+
+@media screen and (max-width: 767px) {
+  .table-wrapper {
+    margin: 30px 5px;
+  }
+
+  .fee-table thead {
+    display: none;
+  }
+  
+  .fee-table tr,
+  .fee-table th,
+  .fee-table td {
+    display: block;
+    padding: 0;
+  }
+
+  .fee-table td {
+    display: block;
+    padding: 0.5em 0 0.25em 0;
+    background-color: transparent;
+    border-bottom: 1px solid #ddd;
+  }
+
+  /* 標頭顯示 */
+  .fee-table td[data-title]:before {
+    content: attr(data-title);
+    display: inline-block;
+    float: left;  /* 正常 */
+    margin-right: 0.5em;
+    padding-left:0.3em ;
+    font-size: 1em;
+    font-weight: 400;
+    color: #FE7F2D ;
+    text-shadow: 0 0 1px #ddd;
+  } 
+
+  .fee-table td:last-child {
+    padding-right:0;
+    border-bottom:  3px solid #ccc;
+  }
+
+  .fee-table td:empty {
+    display: none;
+  }
+
+}
+
+/* 關於我們連結 */
+
+
+.link {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.link div {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin: 10px;
+}
+
+/* 關於我們 ＲＷＤ */
+
+@media screen and (max-width: 767px) {
+
+  .link {
+    flex-wrap:wrap;
+  }
+
+  .link div{
+    width: 100%;
+    margin: 20px;
+  }
+
+
+}
