@@ -1,0 +1,624 @@
+<!DOCTYPE HTML>
+<!--
+	Phantom by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<head>
+<link href="images/logoicon.ico" rel="shortcut icon"/>  
+<title>台南下營鋐茶鵝</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+<link rel="stylesheet" href="css/shoppage.css" />
+<link rel="stylesheet" href="css/main.css" />
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="js/jquery-3.3.1.js" type="text/javascript" charset="utf-8"></script>
+<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css?family=Yusei+Magic&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/css/bootstrap.min.css">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+<script src="../"></script>
+<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+</head>
+<body class="is-preload">
+<!-- Wrapper -->
+<div id="wrapper">
+	
+</head>
+	<!--navbar區塊-->
+	<nav>
+		<div class="navbar navbar-expand-lg p-3" style="background-color: #fede00">
+			<div class="container">
+				<a href="index_nologin.html"><img style="width: 280px;" src="images/logo.png"></a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+	
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav ms-auto">
+						<li class="nav-item"><a href="about_nologin.html" class="text-black">關於我們</a></li>
+						<!-- <li><a href="#">商品總覽</a></li> -->
+						<li class="nav-item"><a href="#" data-bs-toggle="modal" data-bs-target="#login-modal" class="text-black">線上訂購</a></li>
+						<li class="nav-item"><a href="common-quest_nologin.html" class="text-black">常見問題</a></li>
+						<li class="nav-item"><a href="contact_nologin.html" class="text-black">聯絡我們</a></li>
+						<li class="nav-item"><a href="#" data-bs-toggle="modal" data-bs-target="#login-modal" class="text-black">會員登入</a></li>
+						<ul class="navbar-nav ml-auto">
+							<li class="nav-item">
+							  <a href="#" id="cartButton" class="d-flex align-items-center text-black">
+								<img src="images/shopping-cart.png" width="20" height="20" class="me-2">購物車
+								<span id="cartCount" class="cart-count">0</span>
+							  </a>
+							</li>
+						  </ul>
+						  </div>
+						  </div>
+						  </div>
+						  </nav>
+						  
+						  <!-- 購物車彈出視窗 -->
+						  <div id="cartModal" class="modal" style="display: none;">
+							<div class="modal-content">
+							  <span class="close" onclick="closeCartModal()">&times;</span>
+							  <h2>購物車</h2>
+							  <div id="cart">
+								<div id="cart-items"></div>
+							  </div>
+							  <button onclick="goToCheckout()" href="Shopping Cart.html">前往結帳</button>
+							</div>
+						  </div>
+						  <script>
+							var cartCount = 0; // Initialize the cart count to 0
+
+							function openCartModal() {
+								// Display the shopping cart modal
+								document.getElementById("cartModal").style.display = "block";
+							  
+								// Display the added items and their quantities
+								var cartItems = document.getElementById("cartItems");
+								cartItems.innerHTML = ""; // Clear previous contents
+							  
+								// Add information for each item
+								for (var i = 1; i <= cartCount; i++) {
+								  var item = document.createElement("div");
+								  var itemName = getCartItemName(i);
+								  var itemQuantity = getCartItemQuantity(i);
+								  var itemPrice = getItemPrice(itemName); // Assuming a function getItemPrice exists to get the price of an item
+								  var totalPrice = itemPrice * itemQuantity; // Calculate the total price
+							  
+								  item.innerText = "商品 " + i + ": " + itemName + " - " + totalPrice + "個 - 總價: $" + totalPrice;
+								  cartItems.appendChild(item);
+								}
+							  }
+							
+							// Add close button functionality to hide the shopping cart modal
+							function closeCartModal() {
+							  document.getElementById("cartModal").style.display = "none";
+							}
+							
+							function goToCheckout() {
+							  // TODO: Logic for navigating to the checkout page
+							}
+							
+							// Add a click event listener to the cart button
+							document.getElementById("cartButton").addEventListener("click", openCartModal);
+							
+
+						  </script>
+						  
+					
+						  <div id="main">
+							<div class="inner">
+							  <header></header>
+							  <section class="tiles">
+								<article class="style1">
+									<div class="content-wrapper">
+									  <div class="image-wrapper">
+										<span class="image">
+										  <img src="images/pic01 (2).jpg" alt="" onclick="event.preventDefault();" />
+										</span>
+									  </div>
+									  <div class="text-wrapper">
+										<h2>燻茶鵝1/4</h2>
+										<div class="content">
+										  <p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
+										</div>
+										<div class="actions">
+										  <input id="quantity-input1" type="number" value="1" min="1" max="10" />
+										  <button id="increase-button1" type="button" onclick="increaseQuantity('quantity-input1');">▲</button>
+										  <button id="decrease-button1" type="button" onclick="decreaseQuantity('quantity-input1');">▼</button>
+										  <button type="button" onclick="addToCart('燻茶鵝1/4', 'quantity-input2', 1, 1)">加入購物車</button>
+										</div>
+									  </div>
+									</div>
+								  </article>
+
+								  <article class="style1">
+									<div class="content-wrapper">
+									  <div class="image-wrapper">
+										<span class="image">
+										  <img src="images/pic02 (2).jpg" alt="" onclick="event.preventDefault();" />
+										</span>
+									  </div>
+									  <div class="text-wrapper">
+										<h2>燻茶鵝半隻</h2>
+										<div class="content">
+										  <p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
+										</div>
+										<div class="actions">
+										  <input id="quantity-input2" type="number" value="1" min="1" max="10" />
+										  <button id="increase-button2" type="button" onclick="increaseQuantity('quantity-input2');">▲</button>
+										  <button id="decrease-button2" type="button" onclick="decreaseQuantity('quantity-input2');">▼</button>
+										  <button type="button" onclick="addToCart('燻茶鵝半隻', 'quantity-input2', 1, 2)">加入購物車</button>
+										</div>
+									  </div>
+									</div>
+								  </article>
+								  <article class="style1">
+									  <div class="content-wrapper">
+										<div class="image-wrapper">
+										  <span class="image">
+											<img src="images/pic03 (2).jpg" alt="" onclick="event.preventDefault();" />
+										  </span>
+										</div>
+										<div class="text-wrapper">
+										  <h2>燻茶鵝整隻</h2>
+										  <div class="content">
+											<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
+										  </div>
+										  <div class="actions">
+											<input id="quantity-input3" type="number" value="1" min="1" max="10" />
+											<button id="increase-button3" type="button" onclick="increaseQuantity('quantity-input3');">▲</button>
+											<button id="decrease-button3" type="button" onclick="decreaseQuantity('quantity-input3');">▼</button>
+											<button type="button" onclick="addToCart('燻茶鵝整隻', 'quantity-input7', 1, 3)">加入購物車</button>
+										  </div>
+										</div>
+									  </div>
+									</article>
+									<article class="style1">
+										<div class="content-wrapper">
+										  <div class="image-wrapper">
+											<span class="image">
+											  <img src="images/pic04 (2).jpg" alt="" onclick="event.preventDefault();" />
+											</span>
+										  </div>
+										  <div class="text-wrapper">
+											<h2>鹹水鵝1/4隻</h2>
+											<div class="content">
+											  <p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
+											</div>
+											<div class="actions">
+											  <input id="quantity-input4" type="number" value="1" min="1" max="10" />
+											  <button id="increase-button4" type="button" onclick="increaseQuantity('quantity-input4');">▲</button>
+											  <button id="decrease-button4" type="button" onclick="decreaseQuantity('quantity-input4');">▼</button>
+											  <button type="button" onclick="addToCart('鹹水鵝1/4隻', 'quantity-input4', 1, 4)">加入購物車</button>
+											</div>
+										  </div>
+										</div>
+									  </article>
+									<article class="style1">
+									  <div class="content-wrapper">
+										<div class="image-wrapper">
+										  <span class="image">
+											<img src="images/pic05 (2).jpg" alt="" onclick="event.preventDefault();" />
+										  </span>
+										</div>
+										<div class="text-wrapper">
+										  <h2>鹹水鵝半隻</h2>
+										  <div class="content">
+											<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
+										  </div>
+										  <div class="actions">
+											<input id="quantity-input5" type="number" value="1" min="1" max="10" />
+											<button id="increase-button5" type="button" onclick="increaseQuantity('quantity-input5');">▲</button>
+											<button id="decrease-button5" type="button" onclick="decreaseQuantity('quantity-input5');">▼</button>
+											<button type="button" onclick="addToCart('鹹水鵝半隻', 'quantity-input7', 1, 5)">加入購物車</button>
+										  </div>
+										</div>
+									  </div>
+									</article>
+								  
+									<article class="style1">
+									  <div class="content-wrapper">
+										<div class="image-wrapper">
+										  <span class="image">
+											<img src="images/pic10.jpg" alt="" onclick="event.preventDefault();" />
+										  </span>
+										</div>
+										<div class="text-wrapper">
+										  <h2>鹹水鵝整隻</h2>
+										  <div class="content">
+											<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
+										  </div>
+										  <div class="actions">
+											<input id="quantity-input6" type="number" value="1" min="1" max="10" />
+											<button id="increase-button6" type="button" onclick="increaseQuantity('quantity-input6')">▲</button>
+											<button id="decrease-button6" type="button" onclick="decreaseQuantity('quantity-input6')">▼</button>
+											<button type="button" onclick="addToCart('鹹水鵝整隻', 'quantity-input8', 1, 6)">加入購物車</button>
+										  </div>
+										</div>
+									  </div>
+									</article>
+									<article class="style1">
+										<div class="content-wrapper">
+										  <div class="image-wrapper">
+											<span class="image">
+											  <img src="images/pic11.jpg" alt="" onclick="event.preventDefault();" />
+											</span>
+										  </div>
+										  <div class="text-wrapper">
+											<h2>鵝頭</h2>
+											<div class="content">
+											  <p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
+											</div>
+											<div class="actions">
+											  <input id="quantity-input7" type="number" value="1" min="1" max="10" />
+											  <button id="increase-button7" type="button" onclick="increaseQuantity('quantity-input7');">▲</button>
+											  <button id="decrease-button7" type="button" onclick="decreaseQuantity('quantity-input7');">▼</button>
+											  <button type="button" onclick="addToCart('燻茶鵝半隻', 'quantity-input7', 1, 7)">加入購物車</button>
+											</div>
+										  </div>
+										</div>
+									  </article>
+									  <article class="style1">
+										<div class="content-wrapper">
+										  <div class="image-wrapper">
+											<span class="image">
+											  <img src="images/pic06.jpg" alt="" onclick="event.preventDefault();" />
+											</span>
+										  </div>
+										  <div class="text-wrapper">
+											<h2>鵝腳</h2>
+											<div class="content">
+											  <p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
+											</div>
+											<div class="actions">
+											  <input id="quantity-input8" type="number" value="1" min="1" max="10" />
+											  <button id="increase-button8" type="button" onclick="increaseQuantity('quantity-input8');">▲</button>
+											  <button id="decrease-button8" type="button" onclick="decreaseQuantity('quantity-input8');">▼</button>
+											  <button type="button" onclick="addToCart('燻茶鵝半隻', 'quantity-input2', 1, 8)">加入購物車</button>
+											</div>
+										  </div>
+										</div>
+									  </article>
+									<article class="style1">
+									  <div class="content-wrapper">
+										<div class="image-wrapper">
+										  <span class="image">
+											<img src="images/pic07.jpg" alt="" onclick="event.preventDefault();" />
+										  </span>
+										</div>
+										<div class="text-wrapper">
+										  <h2>鵝翅</h2>
+										  <div class="content">
+											<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
+										  </div>
+										  <div class="actions">
+											<input id="quantity-input9" type="number" value="1" min="1" max="10" />
+											<button id="increase-button9" type="button" onclick="increaseQuantity('quantity-input9')">▲</button>
+											<button id="decrease-button9" type="button" onclick="decreaseQuantity('quantity-input9')">▼</button>
+											<button type="button" onclick="addToCart('鵝翅', 'quantity-input9', 1, 9)">加入購物車</button>
+										  </div>
+										</div>
+									  </div>
+									</article>
+								  
+									<article class="style1">
+									  <div class="content-wrapper">
+										<div class="image-wrapper">
+										  <span class="image">
+											<img src="images/pic04 (2).jpg" alt="" onclick="event.preventDefault();" />
+										  </span>
+										</div>
+										<div class="text-wrapper">
+										  <h2>鵝胗</h2>
+										  <div class="content">
+											<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
+										  </div>
+										  <div class="actions">
+											<input id="quantity-input10" type="number" value="1" min="1" max="10" />
+											<button id="increase-button10" type="button" onclick="increaseQuantity('quantity-input10')">▲</button>
+											<button id="decrease-button10" type="button" onclick="decreaseQuantity('quantity-input10')">▼</button>
+											<button type="button" onclick="addToCart('鵝胗', 'quantity-input10', 1, 10)">加入購物車</button>
+										  </div>
+										</div>
+									  </div>
+									</article>
+								  
+									<article class="style1">
+									  <div class="content-wrapper">
+										<div class="image-wrapper">
+										  <span class="image">
+											<img src="images/pic05 (2).jpg" alt="" onclick="event.preventDefault();" />
+										  </span>
+										</div>
+										<div class="text-wrapper">
+										  <h2>雞腳</h2>
+										  <div class="content">
+											<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
+										  </div>
+										  <div class="actions">
+											<input id="quantity-input11" type="number" value="1" min="1" max="10" />
+											<button id="increase-button11" type="button" onclick="increaseQuantity('quantity-input11')">▲</button>
+											<button id="decrease-button11" type="button" onclick="decreaseQuantity('quantity-input11')">▼</button>
+											<button type="button" onclick="addToCart('雞腳', 'quantity-input11', 1, 11)">加入購物車</button>
+										  </div>
+										</div>
+									  </div>
+									</article>
+								  
+									<article class="style1">
+									  <div class="content-wrapper">
+										<div class="image-wrapper">
+										  <span class="image">
+											<img src="images/pic06.jpg" alt="" onclick="event.preventDefault();" />
+										  </span>
+										</div>
+										<div class="text-wrapper">
+										  <h2>鴨翅</h2>
+										  <div class="content">
+											<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
+										  </div>
+										  <div class="actions">
+											<input id="quantity-input12" type="number" value="1" min="1" max="10" />
+											<button id="increase-button12" type="button" onclick="increaseQuantity('quantity-input12')">▲</button>
+											<button id="decrease-button12" type="button" onclick="decreaseQuantity('quantity-input12')">▼</button>
+											<button type="button" onclick="addToCart('鴨翅', 'quantity-input12', 1, 12)">加入購物車</button>
+										  </div>
+										</div>
+									  </div>
+									</article>
+								  </section>
+								  </div>
+								  </div>
+								  
+					
+							  </section>
+							  
+							  
+							</div>
+						  </div>
+						  
+							
+									
+
+						<script>
+
+			
+
+							function updateCartItemHTML(cartData, cartItemId, price) {
+								// Create a container element for the cart item
+								var cartItemContainer = document.createElement("div");
+							  
+								// Product name element
+								var productNameElement = document.createElement("span");
+								productNameElement.innerText = cartData.productName;
+							  
+								// Quantity element
+								var quantityElement = document.createElement("span");
+								quantityElement.innerText = " - " + cartData.quantity + "個";
+							  
+								// Price element
+								var priceElement = document.createElement("span");
+								var totalPrice = price * cartData.quantity; // Calculate the total price
+								priceElement.innerText = " - 價格: $" + totalPrice;
+							  
+								// Add the product name, quantity, and price elements to the cart item container
+								cartItemContainer.appendChild(productNameElement);
+								cartItemContainer.appendChild(quantityElement);
+								cartItemContainer.appendChild(priceElement);
+							  
+								// Add the cart item container to the cart HTML
+								var cartItemsContainer = document.getElementById("cart-items");
+								cartItemsContainer.appendChild(cartItemContainer);
+							  }
+							  
+								// Add product name, quantity, and price elements to the cart item container
+								cartItemContainer.appendChild(productNameElement);
+								cartItemContainer.appendChild(quantityElement);
+								cartItemContainer.appendChild(priceElement);
+							  
+								// Add the cart item container to the cart HTML
+								var cartItemsContainer = document.getElementById("cart-items");
+								cartItemsContainer.appendChild(cartItemContainer);
+							  
+							  
+							  function handleImageClick(event) {
+								event.preventDefault();
+								// Logic for handling image click event
+							  }
+							  
+							  function handleLinkClick(event) {
+								event.preventDefault();
+								// Logic for handling link click event
+							  }
+							  
+							  var cartCount = 0; // Initialize cart count to 0
+							  
+							  function increaseQuantity(inputId) {
+								var quantityInput = document.getElementById(inputId);
+								var currentQuantity = parseInt(quantityInput.value);
+								var newQuantity = currentQuantity + 1;
+								quantityInput.value = newQuantity;
+							  }
+							  
+							  function decreaseQuantity(inputId) {
+								var quantityInput = document.getElementById(inputId);
+								var currentQuantity = parseInt(quantityInput.value);
+								var newQuantity = currentQuantity - 1;
+								if (newQuantity < 1) {
+								  newQuantity = 1;
+								}
+								quantityInput.value = newQuantity;
+							  }
+							  
+							  function addToCart(productName, inputId, cartIndex, price) {
+								var addToCartConfirmation = confirm("是否將 " + productName + " 加入購物車？");
+								if (addToCartConfirmation) {
+								  var quantityInput = document.getElementById(inputId);
+								  var quantity = parseInt(quantityInput.value);
+								  cartCount += quantity; // Add selected quantity to the cart count
+								  document.getElementById('cartCount').innerText = cartCount; // Update the cart count in the HTML
+							  
+								  // Add product name, quantity, and index to the cart data for later use
+								  var cartData = {
+									productName: productName,
+									quantity: quantity,
+									cartIndex: cartIndex
+								  };
+							  
+								  // Add logic here to add the product data to the cart, such as using Ajax to send an asynchronous request
+								  // Example of simulating an asynchronous request
+								  setTimeout(function () {
+									alert(productName + " 已成功加入購物車！");
+							  
+									// Assume the response from adding the data to the cart includes a new cart item ID
+									var cartItemId = 'new_cart_item_id';
+							  
+									// Update the HTML display of the cart item
+									updateCartItemHTML(cartData, cartItemId, price);
+							  
+									// Reset the quantity input field to 0
+									quantityInput.value = 0;
+								  }, 1000);
+								}
+							  }
+							  
+						  </script>
+						  
+						  
+						
+<!--登入彈窗區塊，有與JS配合-->
+<div id="login-modal" class="modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Close button -->'
+            <div class="modal-header">
+                <h5 class="modal-title">會員登入</h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+    
+            <!-- Login form -->
+            <form class="form1" action="show_form.php" method="post">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="account">帳號:</label>
+                        <input type="text" id="account" name="account" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">密碼:</label>
+                        <input type="password" id="password" name="password" class="form-control" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-outline-warning">會員登入</button>
+                    <button type="submit" class="btn btn-warning" formaction="member.php">註冊會員</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!--側邊攔-->
+<div class="sidebar">
+    <a href="https://www.facebook.com/profile.php?id=100091698824828&mibextid=ZbWKwL"target="_blank"><img src="images/facebook.png" style="width: 35px;height:35px;" ></a>
+    <a href="https://www.instagram.com/"><img src="images/Instagram.png" style="width: 35px;height:35px;"></a>
+    <a href="https://line.me/zh-hant/"><img src="images/line.png" style="width: 35px;height:35px;"></a>
+    <a href="#" class="back-to-top"><img src="images/up-arrows.png" style="width: 35px;height:35px;"></a>
+</div>
+
+<!--底部欄 -->
+<footer class="p-4 border-top">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <h3>台南下營 鋐茶鵝</h3>
+            </div>
+            <div class="col-md-3">
+            <h5>關於我們</h5>
+                <ul class="list-unstyled">
+                    <li><a href="about_nologin.html" class="text-decoration">關於鋐茶鵝</a></li>
+                    <li><a href="index_nologin.html" class="text-decoration">營業資訊</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3">
+                <h5>購物須知</h5>
+                <ul class="list-unstyled">
+                    <!--<li><a href="#" class="text-decoration-none text-warning">付款方式</a></li>
+                    <li><a href="#" class="text-decoration-none text-warning">運送方式</a></li>-->
+                    <li><a href="common-quest_nologin.html" class="text-decoration">常見問題</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3">
+                <h5>聯絡資訊</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#" class="text-decoration">LINE：官方LINE帳號</a></li>
+                    <li><a href="https://www.facebook.com/profile.php?id=100091698824828&mibextid=ZbWKwL"target="_blank" class="text-decoration">FACEBOOK：台南下營 鋐茶鵝</a></li>
+					<li><a href="mailto:angel19971314@gmail.com" class="text-decoration">E-mail：angel19971314@gmail.com</a></li>
+					<li><span style="color:#FEC107">電話：0966218624</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    </footer>
+    <div class="bg-warning text-center">台南下營 鋐茶鵝 © 2023</div>
+	<!-- Footer -->
+		<!-- <footer id="footer">
+			<div class="inner">
+				<section>
+					<h2>Get in touch</h2>
+					<form method="post" action="#">
+						<div class="fields">
+							<div class="field half">
+								<input type="text" name="name" id="name" placeholder="Name" />
+							</div>
+							<div class="field half">
+								<input type="email" name="email" id="email" placeholder="Email" />
+							</div>
+							<div class="field">
+								<textarea name="message" id="message" placeholder="Message"></textarea>
+							</div>
+						</div>
+						<ul class="actions">
+							<li><input type="submit" value="Send" class="primary" /></li>
+						</ul>
+					</form>
+				</section>
+				<section>
+					<h2>Follow</h2>
+					<ul class="icons">
+						<li><a href="#" class="icon brands style2 fa-twitter"><span class="label">Twitter</span></a></li>
+						<li><a href="#" class="icon brands style2 fa-facebook-f"><span class="label">Facebook</span></a></li>
+						<li><a href="#" class="icon brands style2 fa-instagram"><span class="label">Instagram</span></a></li>
+						<li><a href="#" class="icon brands style2 fa-dribbble"><span class="label">Dribbble</span></a></li>
+						<li><a href="#" class="icon brands style2 fa-github"><span class="label">GitHub</span></a></li>
+						<li><a href="#" class="icon brands style2 fa-500px"><span class="label">500px</span></a></li>
+						<li><a href="#" class="icon solid style2 fa-phone"><span class="label">Phone</span></a></li>
+						<li><a href="#" class="icon solid style2 fa-envelope"><span class="label">Email</span></a></li>
+					</ul>
+				</section>
+				<ul class="copyright">
+					<li>&copy; Untitled. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+				</ul>
+			</div>
+		</footer>
+
+		</div>
+		<div class="footerpage">
+
+		</div> -->
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+			<script>$(".footerpage").load("footer.php");</script>
+			
+	</body>
+</html>
