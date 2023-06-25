@@ -1,0 +1,149 @@
+/* 進度條區塊 */
+#progress-bar-container {
+  width: 100%;
+  height: 5px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #f0f0f0;
+  z-index: 9999;
+}
+
+#progress-bar {
+  height: 100%;
+  background-color: #000;
+  width: 0;
+  transition: width 0.3s ease-in-out;
+}
+
+
+.carousel-indicators [data-bs-target] {
+    list-style: none;
+}
+.newsdiv1 {
+    width: 100%;
+    height:45vh ;
+    background: url("../images/v120_2722.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    opacity: 1;
+    position: relative;
+    top: 20%;
+    left: 0px;
+    overflow: hidden;
+  }
+  .newstitle {
+    width: 100%;
+    color: rgba(0,0,0,1);
+    position: absolute;
+    top: 35px;
+    right: 0;
+    left: 0;
+    /* font-family: Roboto;
+    font-weight: Bold;
+    font-size: 45px; */
+    opacity: 1;
+    text-align: center;
+  }
+  .newsdiv2 {
+    width: 70%;
+    height: 45%;
+    background: url("../images/v120_2726.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    opacity: 1;
+    position: absolute;
+    top: 118px;
+    left: 15%;
+    right: 15%;
+    overflow: hidden;
+    border: 5px solid rgba(255,203,33,1);
+  }
+  
+  .news {
+    width: 90%;
+    margin: 0 auto;
+  }
+  .newstext {
+    width: 65%;
+    margin-bottom: 2%;
+    margin-top: 2%;
+    margin-right: 16px;
+    text-align: left;
+    padding-left: 16px;
+  }
+  .newstext p {
+    display: inline-block;
+    margin-right: 10px;
+    padding-right: 10px;
+  }
+  .newsdate {
+    font-family: Roboto;
+    font-weight: Bold;
+    font-size: 14px;
+    border-right-style:solid;
+    border-color:rgba(255,203,33,1)
+  }
+  .newsdata {
+    font-family: Roboto;
+    font-weight: Bold;
+    font-size: 12px;
+  }
+  .p-5 {
+    padding: 3rem!important;
+  }
+  .text-center_hot {
+    width: 60%;
+    height: 40%;
+    position: relative;
+    margin-left: 20%;
+    margin-right: 20%;
+    text-align: center!important;
+  }
+  .text-center_3 {
+    width: 90%;
+    height: 40%;
+    position: relative;
+    margin-left: 5%;
+    margin-right: 5%;
+    text-align: center!important;
+  }
+  .text-center_time {
+    width: 100%;
+    height: 30%;
+    position: relative;
+    margin-left: 0%;
+    margin-right: 0%;
+    text-align: center!important;
+  }
+ 
+@media only screen and (min-height: 1800px)and (max-width: 1200px){
+    .newsdiv1{
+        height: 20vh;
+    }
+}
+@media only screen and (min-height: 2000px)and (max-width: 1200px){
+    .newsdiv1{
+        height: 15vh;
+    }
+}
+@media only screen and (min-height: 2400px)and (max-width: 1200px){
+    .newsdiv1{
+        height: 13vh;
+    }
+}
+
+/*Footer設定*/
+.text-decoration 
+{
+    color: #FEC107;
+	text-decoration: none;
+}
+
+.text-decoration:hover
+{
+    color: #000080;
+}
+	
