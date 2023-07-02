@@ -21,6 +21,21 @@
     list-style: none;
 }
 
+#changepic {
+  position: absolute;
+  z-index: 99;
+  width: 10%;
+  top: 35%;
+  left: 45%;
+  right: 45%;
+}
+.editnewsbutton {
+  float: right;
+}
+
+.hidden-input {
+  display: none;
+}
 
 
 
