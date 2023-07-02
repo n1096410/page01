@@ -11,7 +11,7 @@
 
 #progress-bar {
   height: 100%;
-  background-color: #000;
+  background-color: #0000C6;
   width: 0;
   transition: width 0.1s ease-in-out;
 }
@@ -20,9 +20,15 @@
 .carousel-indicators [data-bs-target] {
     list-style: none;
 }
+
+
+
+
+
+/* 最新消息區塊 */
 .newsdiv1 {
     width: 100%;
-    height:45vh ;
+    height:40vh ;
     background: url("../images/v120_2722.png");
     background-repeat: no-repeat;
     background-position: center center;
@@ -48,11 +54,10 @@
   }
   .newsdiv2 {
     width: 70%;
-    height: 45%;
-    background: url("../images/v120_2726.png");
+    /* background: url("../images/v120_2726.png");
     background-repeat: no-repeat;
     background-position: center center;
-    background-size: cover;
+    background-size: cover; */
     opacity: 1;
     position: absolute;
     top: 118px;
@@ -60,6 +65,7 @@
     right: 15%;
     overflow: hidden;
     border: 5px solid rgba(255,203,33,1);
+    border-radius: 15px;
   }
   
   .news {
@@ -82,15 +88,29 @@
   .newsdate {
     font-family: Roboto;
     font-weight: Bold;
-    font-size: 14px;
+    font-size: 18px;
     border-right-style:solid;
     border-color:rgba(255,203,33,1)
   }
   .newsdata {
     font-family: Roboto;
     font-weight: Bold;
-    font-size: 12px;
+    font-size: 16px;
   }
+
+
+
+/* 熱門品項 */
+
+ .shop-btn {
+  width: 300px;
+  height: 80px;
+  /* background-color: #FE7F2D; */
+  color: #fff;
+  text-align: center;
+ }
+
+
   .p-5 {
     padding: 3rem!important;
   }
@@ -117,8 +137,35 @@
     margin-left: 0%;
     margin-right: 0%;
     text-align: center!important;
+    font-weight: bold;
   }
- 
+
+
+
+/* 營業資訊圖片hover */
+
+  .image-container {
+    position: relative;
+    margin:10px 0;
+}
+
+  .caption {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    padding: 5px 10px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+
+
 @media only screen and (min-height: 1800px)and (max-width: 1200px){
     .newsdiv1{
         height: 20vh;
