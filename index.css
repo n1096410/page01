@@ -20,6 +20,10 @@
 .carousel-indicators [data-bs-target] {
     list-style: none;
 }
+.carousel-caption {
+  background-color: rgba(0, 0, 0, 0.2); /* 設定背景色和透明度 */
+  border-radius: 10px;
+}
 
 #changepic {
   position: absolute;
@@ -38,122 +42,6 @@
 }
 
 
-
-
-/* 最新消息區塊 */
-.newsdiv1 {
-    width: 100%;
-    height:40vh ;
-    background: url("../images/v120_2722.png");
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
-    opacity: 1;
-    position: relative;
-    top: 20%;
-    left: 0px;
-    overflow: hidden;
-  }
-  .newstitle {
-    width: 100%;
-    color: rgba(0,0,0,1);
-    position: absolute;
-    top: 35px;
-    right: 0;
-    left: 0;
-    /* font-family: Roboto;
-    font-weight: Bold;
-    font-size: 45px; */
-    opacity: 1;
-    text-align: center;
-  }
-  .newsdiv2 {
-    width: 70%;
-    /* background: url("../images/v120_2726.png");
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover; */
-    opacity: 1;
-    position: absolute;
-    top: 118px;
-    left: 15%;
-    right: 15%;
-    overflow: hidden;
-    border: 5px solid rgba(255,203,33,1);
-    border-radius: 15px;
-  }
-  
-  .news {
-    width: 90%;
-    margin: 0 auto;
-  }
-  .newstext {
-    width: 65%;
-    margin-bottom: 2%;
-    margin-top: 2%;
-    margin-right: 16px;
-    text-align: left;
-    padding-left: 16px;
-  }
-  .newstext p {
-    display: inline-block;
-    margin-right: 10px;
-    padding-right: 10px;
-  }
-  .newsdate {
-    font-family: Roboto;
-    font-weight: Bold;
-    font-size: 18px;
-    border-right-style:solid;
-    border-color:rgba(255,203,33,1)
-  }
-  .newsdata {
-    font-family: Roboto;
-    font-weight: Bold;
-    font-size: 16px;
-  }
-
-
-
-/* 熱門品項 */
-
- .shop-btn {
-  width: 300px;
-  height: 80px;
-  /* background-color: #FE7F2D; */
-  color: #fff;
-  text-align: center;
- }
-
-
-  .p-5 {
-    padding: 3rem!important;
-  }
-  .text-center_hot {
-    width: 60%;
-    height: 40%;
-    position: relative;
-    margin-left: 20%;
-    margin-right: 20%;
-    text-align: center!important;
-  }
-  .text-center_3 {
-    width: 90%;
-    height: 40%;
-    position: relative;
-    margin-left: 5%;
-    margin-right: 5%;
-    text-align: center!important;
-  }
-  .text-center_time {
-    width: 100%;
-    height: 30%;
-    position: relative;
-    margin-left: 0%;
-    margin-right: 0%;
-    text-align: center!important;
-    font-weight: bold;
-  }
 
 
 
@@ -181,21 +69,7 @@
 
 
 
-@media only screen and (min-height: 1800px)and (max-width: 1200px){
-    .newsdiv1{
-        height: 20vh;
-    }
-}
-@media only screen and (min-height: 2000px)and (max-width: 1200px){
-    .newsdiv1{
-        height: 15vh;
-    }
-}
-@media only screen and (min-height: 2400px)and (max-width: 1200px){
-    .newsdiv1{
-        height: 13vh;
-    }
-}
+
 
 /*Footer設定*/
 .text-decoration 
