@@ -10,7 +10,10 @@
 <title>台南下營鋐茶鵝</title>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-<link rel="stylesheet" href="css/shoppage.css" />
+<!-- 有綁定其他樣式，因此先取消使用原先樣式表 -->
+<!-- <link rel="stylesheet" href="css/shoppage.css" /> -->
+<!-- 新商品頁樣式表，有要新增的寫在這 -->
+<link rel="stylesheet" href="css/shoppage-new.css">
 <link rel="stylesheet" href="css/main.css" />
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="js/jquery-3.3.1.js" type="text/javascript" charset="utf-8"></script>
@@ -27,7 +30,6 @@
 <!-- Wrapper -->
 <div id="wrapper">
 	
-</head>
 	<!--navbar區塊-->
 	<nav>
 		<div class="navbar navbar-expand-lg p-3" style="background-color: #fede00">
@@ -49,7 +51,7 @@
 							<li class="nav-item">
 							  <a href="#" id="cartButton" class="d-flex align-items-center text-black">
 								<img src="images/shopping-cart.png" width="20" height="20" class="me-2">購物車
-								<span id="cartCount" class="cart-count">0</span>
+								<span id="cartCount" class="cart-count"></span>
 							  </a>
 							</li>
 						  </ul>
@@ -59,17 +61,43 @@
 						  </nav>
 						  
 						  <!-- 購物車彈出視窗 -->
-						  <div id="cartModal" class="modal" style="display: none;">
+						  <div id="cartModal" class="modal" tabindex="-1">
+							<div class="modal-dialog">
+							  <div class="modal-content">
+								<div class="modal-header">
+								  <h5 class="modal-title">購物車</h5>
+								  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="closeCartModal()"></button>
+								</div>
+								<div class="modal-body">
+								  <p>
+									<div id="cart">
+									<div id="cart-items"></div>
+								    </div>
+								  </p>
+								</div>
+								<div class="modal-footer">
+									<button class="btn btn-outline-warning" onclick="location.href='Shopping Cart.html'">前往結帳</button>
+								</div>
+							  </div>
+							</div>
+						  </div>
+
+						  <!-- <div id="cartModal" class="modal" style="display: none;">
 							<div class="modal-content">
 							  <span class="close" onclick="closeCartModal()">&times;</span>
 							  <h2>購物車</h2>
 							  <div id="cart">
 								<div id="cart-items"></div>
 							  </div>
-							  <button onclick="goToCheckout()" href="Shopping Cart.html">前往結帳</button>
+							  <button class="btn btn-outline-warning" onclick="goToCheckout()" href="Shopping Cart.html">前往結帳</button>
 							</div>
-						  </div>
+						  </div> -->
 						  <script>
+							//預設關閉購物車
+							window.addEventListener("load", function() {
+								document.getElementById("cartModal").style.display = "none";
+							});
+
 							var cartCount = 0; // Initialize the cart count to 0
 
 							function openCartModal() {
@@ -106,386 +134,303 @@
 							document.getElementById("cartButton").addEventListener("click", openCartModal);
 							
 
-						  </script>
-						  
-					
-						  <div id="main">
-							<div class="inner">
-							  <header></header>
-							  <section class="tiles">
-								<article class="style1">
-									<div class="content-wrapper">
-									  <div class="image-wrapper">
-										<span class="image">
-										  <img src="images/pic01 (2).jpg" alt="" onclick="event.preventDefault();" />
-										</span>
-									  </div>
-									  <div class="text-wrapper">
-										<h2>燻茶鵝1/4</h2>
-										<div class="content">
-										  <p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
-										</div>
-										<div class="actions">
-										  <input id="quantity-input1" type="number" value="1" min="1" max="10" />
-										  <button id="increase-button1" type="button" onclick="increaseQuantity('quantity-input1');">▲</button>
-										  <button id="decrease-button1" type="button" onclick="decreaseQuantity('quantity-input1');">▼</button>
-										  <button type="button" onclick="addToCart('燻茶鵝1/4', 'quantity-input2', 1, 1)">加入購物車</button>
-										</div>
-									  </div>
-									</div>
-								  </article>
+						</script>
 
-								  <article class="style1">
-									<div class="content-wrapper">
-									  <div class="image-wrapper">
-										<span class="image">
-										  <img src="images/pic02 (2).jpg" alt="" onclick="event.preventDefault();" />
-										</span>
-									  </div>
-									  <div class="text-wrapper">
-										<h2>燻茶鵝半隻</h2>
-										<div class="content">
-										  <p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
-										</div>
-										<div class="actions">
-										  <input id="quantity-input2" type="number" value="1" min="1" max="10" />
-										  <button id="increase-button2" type="button" onclick="increaseQuantity('quantity-input2');">▲</button>
-										  <button id="decrease-button2" type="button" onclick="decreaseQuantity('quantity-input2');">▼</button>
-										  <button type="button" onclick="addToCart('燻茶鵝半隻', 'quantity-input2', 1, 2)">加入購物車</button>
-										</div>
-									  </div>
-									</div>
-								  </article>
-								  <article class="style1">
-									  <div class="content-wrapper">
-										<div class="image-wrapper">
-										  <span class="image">
-											<img src="images/pic03 (2).jpg" alt="" onclick="event.preventDefault();" />
-										  </span>
-										</div>
-										<div class="text-wrapper">
-										  <h2>燻茶鵝整隻</h2>
-										  <div class="content">
-											<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
-										  </div>
-										  <div class="actions">
-											<input id="quantity-input3" type="number" value="1" min="1" max="10" />
-											<button id="increase-button3" type="button" onclick="increaseQuantity('quantity-input3');">▲</button>
-											<button id="decrease-button3" type="button" onclick="decreaseQuantity('quantity-input3');">▼</button>
-											<button type="button" onclick="addToCart('燻茶鵝整隻', 'quantity-input7', 1, 3)">加入購物車</button>
-										  </div>
-										</div>
-									  </div>
-									</article>
-									<article class="style1">
-										<div class="content-wrapper">
-										  <div class="image-wrapper">
-											<span class="image">
-											  <img src="images/pic04 (2).jpg" alt="" onclick="event.preventDefault();" />
-											</span>
-										  </div>
-										  <div class="text-wrapper">
-											<h2>鹹水鵝1/4隻</h2>
-											<div class="content">
-											  <p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
-											</div>
-											<div class="actions">
-											  <input id="quantity-input4" type="number" value="1" min="1" max="10" />
-											  <button id="increase-button4" type="button" onclick="increaseQuantity('quantity-input4');">▲</button>
-											  <button id="decrease-button4" type="button" onclick="decreaseQuantity('quantity-input4');">▼</button>
-											  <button type="button" onclick="addToCart('鹹水鵝1/4隻', 'quantity-input4', 1, 4)">加入購物車</button>
-											</div>
-										  </div>
-										</div>
-									  </article>
-									<article class="style1">
-									  <div class="content-wrapper">
-										<div class="image-wrapper">
-										  <span class="image">
-											<img src="images/pic05 (2).jpg" alt="" onclick="event.preventDefault();" />
-										  </span>
-										</div>
-										<div class="text-wrapper">
-										  <h2>鹹水鵝半隻</h2>
-										  <div class="content">
-											<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
-										  </div>
-										  <div class="actions">
-											<input id="quantity-input5" type="number" value="1" min="1" max="10" />
-											<button id="increase-button5" type="button" onclick="increaseQuantity('quantity-input5');">▲</button>
-											<button id="decrease-button5" type="button" onclick="decreaseQuantity('quantity-input5');">▼</button>
-											<button type="button" onclick="addToCart('鹹水鵝半隻', 'quantity-input7', 1, 5)">加入購物車</button>
-										  </div>
-										</div>
-									  </div>
-									</article>
-								  
-									<article class="style1">
-									  <div class="content-wrapper">
-										<div class="image-wrapper">
-										  <span class="image">
-											<img src="images/pic10.jpg" alt="" onclick="event.preventDefault();" />
-										  </span>
-										</div>
-										<div class="text-wrapper">
-										  <h2>鹹水鵝整隻</h2>
-										  <div class="content">
-											<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
-										  </div>
-										  <div class="actions">
-											<input id="quantity-input6" type="number" value="1" min="1" max="10" />
-											<button id="increase-button6" type="button" onclick="increaseQuantity('quantity-input6')">▲</button>
-											<button id="decrease-button6" type="button" onclick="decreaseQuantity('quantity-input6')">▼</button>
-											<button type="button" onclick="addToCart('鹹水鵝整隻', 'quantity-input8', 1, 6)">加入購物車</button>
-										  </div>
-										</div>
-									  </div>
-									</article>
-									<article class="style1">
-										<div class="content-wrapper">
-										  <div class="image-wrapper">
-											<span class="image">
-											  <img src="images/pic11.jpg" alt="" onclick="event.preventDefault();" />
-											</span>
-										  </div>
-										  <div class="text-wrapper">
-											<h2>鵝頭</h2>
-											<div class="content">
-											  <p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
-											</div>
-											<div class="actions">
-											  <input id="quantity-input7" type="number" value="1" min="1" max="10" />
-											  <button id="increase-button7" type="button" onclick="increaseQuantity('quantity-input7');">▲</button>
-											  <button id="decrease-button7" type="button" onclick="decreaseQuantity('quantity-input7');">▼</button>
-											  <button type="button" onclick="addToCart('燻茶鵝半隻', 'quantity-input7', 1, 7)">加入購物車</button>
-											</div>
-										  </div>
-										</div>
-									  </article>
-									  <article class="style1">
-										<div class="content-wrapper">
-										  <div class="image-wrapper">
-											<span class="image">
-											  <img src="images/pic06.jpg" alt="" onclick="event.preventDefault();" />
-											</span>
-										  </div>
-										  <div class="text-wrapper">
-											<h2>鵝腳</h2>
-											<div class="content">
-											  <p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
-											</div>
-											<div class="actions">
-											  <input id="quantity-input8" type="number" value="1" min="1" max="10" />
-											  <button id="increase-button8" type="button" onclick="increaseQuantity('quantity-input8');">▲</button>
-											  <button id="decrease-button8" type="button" onclick="decreaseQuantity('quantity-input8');">▼</button>
-											  <button type="button" onclick="addToCart('燻茶鵝半隻', 'quantity-input2', 1, 8)">加入購物車</button>
-											</div>
-										  </div>
-										</div>
-									  </article>
-									<article class="style1">
-									  <div class="content-wrapper">
-										<div class="image-wrapper">
-										  <span class="image">
-											<img src="images/pic07.jpg" alt="" onclick="event.preventDefault();" />
-										  </span>
-										</div>
-										<div class="text-wrapper">
-										  <h2>鵝翅</h2>
-										  <div class="content">
-											<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
-										  </div>
-										  <div class="actions">
-											<input id="quantity-input9" type="number" value="1" min="1" max="10" />
-											<button id="increase-button9" type="button" onclick="increaseQuantity('quantity-input9')">▲</button>
-											<button id="decrease-button9" type="button" onclick="decreaseQuantity('quantity-input9')">▼</button>
-											<button type="button" onclick="addToCart('鵝翅', 'quantity-input9', 1, 9)">加入購物車</button>
-										  </div>
-										</div>
-									  </div>
-									</article>
-								  
-									<article class="style1">
-									  <div class="content-wrapper">
-										<div class="image-wrapper">
-										  <span class="image">
-											<img src="images/pic04 (2).jpg" alt="" onclick="event.preventDefault();" />
-										  </span>
-										</div>
-										<div class="text-wrapper">
-										  <h2>鵝胗</h2>
-										  <div class="content">
-											<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
-										  </div>
-										  <div class="actions">
-											<input id="quantity-input10" type="number" value="1" min="1" max="10" />
-											<button id="increase-button10" type="button" onclick="increaseQuantity('quantity-input10')">▲</button>
-											<button id="decrease-button10" type="button" onclick="decreaseQuantity('quantity-input10')">▼</button>
-											<button type="button" onclick="addToCart('鵝胗', 'quantity-input10', 1, 10)">加入購物車</button>
-										  </div>
-										</div>
-									  </div>
-									</article>
-								  
-									<article class="style1">
-									  <div class="content-wrapper">
-										<div class="image-wrapper">
-										  <span class="image">
-											<img src="images/pic05 (2).jpg" alt="" onclick="event.preventDefault();" />
-										  </span>
-										</div>
-										<div class="text-wrapper">
-										  <h2>雞腳</h2>
-										  <div class="content">
-											<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
-										  </div>
-										  <div class="actions">
-											<input id="quantity-input11" type="number" value="1" min="1" max="10" />
-											<button id="increase-button11" type="button" onclick="increaseQuantity('quantity-input11')">▲</button>
-											<button id="decrease-button11" type="button" onclick="decreaseQuantity('quantity-input11')">▼</button>
-											<button type="button" onclick="addToCart('雞腳', 'quantity-input11', 1, 11)">加入購物車</button>
-										  </div>
-										</div>
-									  </div>
-									</article>
-								  
-									<article class="style1">
-									  <div class="content-wrapper">
-										<div class="image-wrapper">
-										  <span class="image">
-											<img src="images/pic06.jpg" alt="" onclick="event.preventDefault();" />
-										  </span>
-										</div>
-										<div class="text-wrapper">
-										  <h2>鴨翅</h2>
-										  <div class="content">
-											<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
-										  </div>
-										  <div class="actions">
-											<input id="quantity-input12" type="number" value="1" min="1" max="10" />
-											<button id="increase-button12" type="button" onclick="increaseQuantity('quantity-input12')">▲</button>
-											<button id="decrease-button12" type="button" onclick="decreaseQuantity('quantity-input12')">▼</button>
-											<button type="button" onclick="addToCart('鴨翅', 'quantity-input12', 1, 12)">加入購物車</button>
-										  </div>
-										</div>
-									  </div>
-									</article>
-								  </section>
-								  </div>
-								  </div>
-								  
-					
-							  </section>
-							  
-							  
-							</div>
-						  </div>
-						  
-							
+
+<!-- 每頁導覽列 -->
+<div id="logo" class="container ">
+    <i class="fa-solid fa-house ms-2" style="color: #8f8f8f; "></i>&nbsp;<a href="index_nologin.html" style="text-decoration: none;">首頁</a> — <a href="shoppage.html" style="text-decoration: none;">線上訂購</a>
+  </div>
+  
+  <!-- 商品頁 -->
+  <div class="container justify-content-between">
+    <div class="row">
+      <!-- 左側固定欄位 -->
+      <div class="col-md-2 mt-5">
+        <div class="list-group" >
+          <a href="index_nologin.html" class="list-group-item list-group-item-action border-0 border-bottom">首頁</a>
+          <a href="about_nologin.html" class="list-group-item list-group-item-action border-0 border-bottom">關於我們</a>
+          <a href="common-quest_nologin.html" class="list-group-item list-group-item-action border-0 border-bottom">常見問題</a>
+          <a href="contact_nologin.html" class="list-group-item list-group-item-action border-0 border-bottom">聯絡我們</a>
+        </div>
+      </div>
+      <!-- 右側商品列表 -->
+      <div class="container col-md-10 mt-5 mb-5">
+        <!-- 商品標題 -->
+        <div class="section-heading">所有商品</div>
+		<!-- 商品項目 -->
+        <div class="row justify-content-evenly">
+
+            <!-- 每項商品 -->
+            <!-- quantity-input1 -->
+            <div class="card col-12 col-md-6 col-lg-4 col-xl-3 p-2 m-3   " >
+                <a href="#" class="card-header">
+                <img src="images/pic01 (2).jpg" class="card-img-top" alt="Product 1">
+                </a>
+                <div class="card-body">
+                    <h5 class="card-title d-flex justify-content-between align-items-baseline " style="font-weight: bolder;">
+                    燻茶鵝 &#188; 隻
+                    <span class="text-end fs-6 text-center" style="color: #f26649; font-weight: bold; ">NT$ 380</span>
+                    </h5>
+                    <div class="container border rounded d-flex justify-content-evenly align-content-center" >
+                        <button class="btn" id="decrease-button1" type="button" onclick="decreaseQuantity('quantity-input1');"><i class="fa-solid fa-minus" style="color: #FEC107;"></i></button>
+                        <input class="form-control product-value text-center mx-3" readonly id="quantity-input1" type="number" value="1" style="border:transparent; font-weight: bolder;">
+                        <button class="btn" id="increase-button1" type="button" onclick="increaseQuantity('quantity-input1');"><i class="fa-solid fa-plus" style="color: #FEC107;"></i></button>
+                    </div>
+                    <div class="container d-flex justify-content-center mt-3">
+                        <button class="btn btn-warning " type="button" style="width: 80%; font-weight: bolder; font-size: 15px;" onclick="addToCart('燻茶鵝1/4隻', 'quantity-input1', 1, 380)">
+                        <i class="fa-solid fa-cart-shopping mt-2 me-2" style="color: #ffffff; "></i>加入購物車</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- quantity-input2 -->
+            <div class="card col-12 col-md-6 col-lg-4 col-xl-3 p-2 m-3   " >
+                <a href="#" class="card-header">
+                <img src="images/pic01 (2).jpg" class="card-img-top" alt="Product 1">
+                </a>
+                <div class="card-body">
+                    <h5 class="card-title d-flex justify-content-between align-items-baseline " style="font-weight: bolder;">
+                    燻茶鵝 &#189; 隻
+                    <span class="text-end fs-6 text-center" style="color: #f26649; font-weight: bold; ">NT$ 660</span>
+                    </h5>
+                    <div class="container border rounded d-flex justify-content-evenly align-content-center" >
+                        <button class="btn" id="decrease-button1" type="button" onclick="decreaseQuantity('quantity-input2');"><i class="fa-solid fa-minus" style="color: #FEC107;"></i></button>
+                        <input class="form-control product-value text-center mx-3" readonly id="quantity-input2" type="number" value="1" style="border:transparent; font-weight: bolder;">
+                        <button class="btn" id="increase-button1" type="button" onclick="increaseQuantity('quantity-input2');"><i class="fa-solid fa-plus" style="color: #FEC107;"></i></button>
+                    </div>
+                    <div class="container d-flex justify-content-center mt-3">
+                        <button class="btn btn-warning" type="button" style="width: 80%; font-weight: bolder; font-size: 15px;" onclick="addToCart('燻茶鵝1/2隻', 'quantity-input2', 1, 660)">
+                        <i class="fa-solid fa-cart-shopping mt-2 me-2" style="color: #ffffff; "></i>加入購物車</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- quantity-input3 -->
+            <div class="card col-12 col-md-6 col-lg-4 col-xl-3 p-2 m-3   " >
+                <a href="#" class="card-header">
+                <img src="images/pic01 (2).jpg" class="card-img-top" alt="Product 1">
+                </a>
+                <div class="card-body">
+                    <h5 class="card-title d-flex justify-content-between align-items-baseline " style="font-weight: bolder;">
+                    醉鵝 &#188; 隻
+                    <span class="text-end fs-6 text-center" style="color: #f26649; font-weight: bold; ">NT$ 460</span>
+                    </h5>
+                    <div class="container border rounded d-flex justify-content-evenly align-content-center" >
+                        <button class="btn" id="decrease-button1" type="button" onclick="decreaseQuantity('quantity-input3');"><i class="fa-solid fa-minus" style="color: #FEC107;"></i></button>
+                        <input class="form-control product-value text-center mx-3" readonly id="quantity-input3" type="number" value="1" style="border:transparent; font-weight: bolder;">
+                        <button class="btn" id="increase-button1" type="button" onclick="increaseQuantity('quantity-input3');"><i class="fa-solid fa-plus" style="color: #FEC107;"></i></button>
+                    </div>
+                    <div class="container d-flex justify-content-center mt-3">
+                        <button class="btn btn-warning" type="button" style="width: 80%; font-weight: bolder; font-size: 15px;" onclick="addToCart('醉鵝1/4隻', 'quantity-input3', 1, 460)">
+                        <i class="fa-solid fa-cart-shopping mt-2 me-2" style="color: #ffffff; "></i>加入購物車</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- quantity-input4 -->
+            <div class="card col-12 col-md-6 col-lg-4 col-xl-3 p-2 m-3   " >
+                <a href="#" class="card-header">
+                <img src="images/pic01 (2).jpg" class="card-img-top" alt="Product 1">
+                </a>
+                <div class="card-body">
+                    <h5 class="card-title d-flex justify-content-between align-items-baseline " style="font-weight: bolder;">
+                    醉鵝 &#189; 隻
+                    <span class="text-end fs-6 text-center" style="color: #f26649; font-weight: bold; ">NT$ 760</span>
+                    </h5>
+                    <div class="container border rounded d-flex justify-content-evenly align-content-center" >
+                        <button class="btn" id="decrease-button1" type="button" onclick="decreaseQuantity('quantity-input4');"><i class="fa-solid fa-minus" style="color: #FEC107;"></i></button>
+                        <input class="form-control product-value text-center mx-3" readonly id="quantity-input4" type="number" value="1" style="border:transparent; font-weight: bolder;">
+                        <button class="btn" id="increase-button1" type="button" onclick="increaseQuantity('quantity-input4');"><i class="fa-solid fa-plus" style="color: #FEC107;"></i></button>
+                    </div>
+                    <div class="container d-flex justify-content-center mt-3">
+                        <button class="btn btn-warning" type="button" style="width: 80%; font-weight: bolder; font-size: 15px;" onclick="addToCart('醉鵝1/2隻', 'quantity-input4', 1, 760)">
+                        <i class="fa-solid fa-cart-shopping mt-2 me-2" style="color: #ffffff; "></i>加入購物車</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- quantity-input5 -->
+            <div class="card col-12 col-md-6 col-lg-4 col-xl-3 p-2 m-3   " >
+                <a href="#" class="card-header">
+                <img src="images/pic01 (2).jpg" class="card-img-top" alt="Product 1">
+                </a>
+                <div class="card-body">
+                    <h5 class="card-title d-flex justify-content-between align-items-baseline " style="font-weight: bolder;">
+                    鵝頭/個
+                    <span class="text-end fs-6 text-center" style="color: #f26649; font-weight: bold; ">NT$ 75</span>
+                    </h5>
+                    <div class="container border rounded d-flex justify-content-evenly align-content-center" >
+                        <button class="btn" id="decrease-button1" type="button" onclick="decreaseQuantity('quantity-input5');"><i class="fa-solid fa-minus" style="color: #FEC107;"></i></button>
+                        <input class="form-control product-value text-center mx-3" readonly id="quantity-input5" type="number" value="1" style="border:transparent; font-weight: bolder;">
+                        <button class="btn" id="increase-button1" type="button" onclick="increaseQuantity('quantity-input5');"><i class="fa-solid fa-plus" style="color: #FEC107;"></i></button>
+                    </div>
+                    <div class="container d-flex justify-content-center mt-3">
+                        <button class="btn btn-warning" type="button" style="width: 80%; font-weight: bolder; font-size: 15px;" onclick="addToCart('鵝頭', 'quantity-input5', 1, 75)">
+                        <i class="fa-solid fa-cart-shopping mt-2 me-2" style="color: #ffffff; "></i>加入購物車</button>
+                    </div>
+                </div>
+            </div>
+        
+            <!-- quantity-input6 -->
+            <div class="card col-12 col-md-6 col-lg-4 col-xl-3 p-2 m-3   " >
+                <a href="#" class="card-header">
+                <img src="images/pic01 (2).jpg" class="card-img-top" alt="Product 1">
+                </a>
+                <div class="card-body">
+                    <h5 class="card-title d-flex justify-content-between align-items-baseline " style="font-weight: bolder;">
+                    鵝腳/個
+                    <span class="text-end fs-6 text-center" style="color: #f26649; font-weight: bold; ">NT$ 35</span>
+                    </h5>
+                    <div class="container border rounded d-flex justify-content-evenly align-content-center" >
+                        <button class="btn" id="decrease-button1" type="button" onclick="decreaseQuantity('quantity-input6');"><i class="fa-solid fa-minus" style="color: #FEC107;"></i></button>
+                        <input class="form-control product-value text-center mx-3" readonly id="quantity-input6" type="number" value="1" style="border:transparent; font-weight: bolder;">
+                        <button class="btn" id="increase-button1" type="button" onclick="increaseQuantity('quantity-input6');"><i class="fa-solid fa-plus" style="color: #FEC107;"></i></button>
+                    </div>
+                    <div class="container d-flex justify-content-center mt-3">
+                        <button class="btn btn-warning" type="button" style="width: 80%; font-weight: bolder; font-size: 15px;" onclick="addToCart('鵝腳', 'quantity-input6', 1, 35)">
+                        <i class="fa-solid fa-cart-shopping mt-2 me-2" style="color: #ffffff; "></i>加入購物車</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- quantity-input7 -->
+            <div class="card col-12 col-md-6 col-lg-4 col-xl-3 p-2 m-3   " >
+                <a href="#" class="card-header">
+                <img src="images/pic01 (2).jpg" class="card-img-top" alt="Product 1">
+                </a>
+                <div class="card-body">
+                    <h5 class="card-title d-flex justify-content-between align-items-baseline " style="font-weight: bolder;">
+                    鵝翅/支
+                    <span class="text-end fs-6 text-center" style="color: #f26649; font-weight: bold; ">NT$ 40</span>
+                    </h5>
+                    <div class="container border rounded d-flex justify-content-evenly align-content-center" >
+                        <button class="btn" id="decrease-button1" type="button" onclick="decreaseQuantity('quantity-input7');"><i class="fa-solid fa-minus" style="color: #FEC107;"></i></button>
+                        <input class="form-control product-value text-center mx-3" readonly id="quantity-input7" type="number" value="1" style="border:transparent; font-weight: bolder;">
+                        <button class="btn" id="increase-button1" type="button" onclick="increaseQuantity('quantity-input7');"><i class="fa-solid fa-plus" style="color: #FEC107;"></i></button>
+                    </div>
+                    <div class="container d-flex justify-content-center mt-3">
+                        <button class="btn btn-warning" type="button" style="width: 80%; font-weight: bolder; font-size: 15px;" onclick="addToCart('鵝翅', 'quantity-input7', 1, 40)">
+                        <i class="fa-solid fa-cart-shopping mt-2 me-2" style="color: #ffffff; "></i>加入購物車</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- quantity-input8 -->
+            <div class="card col-12 col-md-6 col-lg-4 col-xl-3 p-2 m-3   " >
+                <a href="#" class="card-header">
+                <img src="images/pic01 (2).jpg" class="card-img-top" alt="Product 1">
+                </a>
+                <div class="card-body">
+                    <h5 class="card-title d-flex justify-content-between align-items-baseline " style="font-weight: bolder;">
+                    鵝胗
+                    <span class="text-end fs-6 text-center" style="color: #f26649; font-weight: bold; ">NT$ 100</span>
+                    </h5>
+                    <div class="container border rounded d-flex justify-content-evenly align-content-center" >
+                        <button class="btn" id="decrease-button1" type="button" onclick="decreaseQuantity('quantity-input8');"><i class="fa-solid fa-minus" style="color: #FEC107;"></i></button>
+                        <input class="form-control product-value text-center mx-3" readonly id="quantity-input8" type="number" value="1" style="border:transparent; font-weight: bolder;">
+                        <button class="btn" id="increase-button1" type="button" onclick="increaseQuantity('quantity-input8');"><i class="fa-solid fa-plus" style="color: #FEC107;"></i></button>
+                    </div>
+                    <div class="container d-flex justify-content-center mt-3">
+                        <button class="btn btn-warning" type="button" style="width: 80%; font-weight: bolder; font-size: 15px;" onclick="addToCart('鵝胗', 'quantity-input8', 1, 100)">
+                        <i class="fa-solid fa-cart-shopping mt-2 me-2" style="color: #ffffff; "></i>加入購物車</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- quantity-input9 -->
+            <div class="card col-12 col-md-6 col-lg-4 col-xl-3 p-2 m-3   " >
+                <a href="#" class="card-header">
+                <img src="images/pic01 (2).jpg" class="card-img-top" alt="Product 1">
+                </a>
+                <div class="card-body">
+                    <h5 class="card-title d-flex justify-content-between align-items-baseline " style="font-weight: bolder;">
+                    雞腳/3支
+                    <span class="text-end fs-6 text-center" style="color: #f26649; font-weight: bold; ">NT$ 35</span>
+                    </h5>
+                    <div class="container border rounded d-flex justify-content-evenly align-content-center" >
+                        <button class="btn" id="decrease-button1" type="button" onclick="decreaseQuantity('quantity-input9');"><i class="fa-solid fa-minus" style="color: #FEC107;"></i></button>
+                        <input class="form-control product-value text-center mx-3" readonly id="quantity-input9" type="number" value="1" style="border:transparent; font-weight: bolder;">
+                        <button class="btn" id="increase-button1" type="button" onclick="increaseQuantity('quantity-input9');"><i class="fa-solid fa-plus" style="color: #FEC107;"></i></button>
+                    </div>
+                    <div class="container d-flex justify-content-center mt-3">
+                        <button class="btn btn-warning" type="button" style="width: 80%; font-weight: bolder; font-size: 15px;" onclick="addToCart('雞腳', 'quantity-input9', 1, 35)">
+                        <i class="fa-solid fa-cart-shopping mt-2 me-2" style="color: #ffffff; "></i>加入購物車</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 其他品項待新增 -->
+
+        </div>
+      </div>
+    </div>
+  </div>
 									
 
 						<script>
-
-			
-
 							function updateCartItemHTML(cartData, cartItemId, price) {
-								// Create a container element for the cart item
-								var cartItemContainer = document.createElement("div");
-							  
-								// Product name element
-								var productNameElement = document.createElement("span");
-								productNameElement.innerText = cartData.productName;
-							  
-								// Quantity element
-								var quantityElement = document.createElement("span");
-								quantityElement.innerText = " - " + cartData.quantity + "個";
-							  
-								// Price element
-								var priceElement = document.createElement("span");
-								var totalPrice = price * cartData.quantity; // Calculate the total price
-								priceElement.innerText = " - 價格: $" + totalPrice;
-							  
-								// Add the product name, quantity, and price elements to the cart item container
-								cartItemContainer.appendChild(productNameElement);
-								cartItemContainer.appendChild(quantityElement);
-								cartItemContainer.appendChild(priceElement);
-							  
-								// Add the cart item container to the cart HTML
-								var cartItemsContainer = document.getElementById("cart-items");
-								cartItemsContainer.appendChild(cartItemContainer);
-							  }
-							  
-								// Add product name, quantity, and price elements to the cart item container
-								cartItemContainer.appendChild(productNameElement);
-								cartItemContainer.appendChild(quantityElement);
-								cartItemContainer.appendChild(priceElement);
-							  
-								// Add the cart item container to the cart HTML
-								var cartItemsContainer = document.getElementById("cart-items");
-								cartItemsContainer.appendChild(cartItemContainer);
-							  
-							  
-							  function handleImageClick(event) {
-								event.preventDefault();
-								// Logic for handling image click event
-							  }
-							  
-							  function handleLinkClick(event) {
-								event.preventDefault();
-								// Logic for handling link click event
-							  }
-							  
-							  var cartCount = 0; // Initialize cart count to 0
-							  
-							  function increaseQuantity(inputId) {
+							var cartItemContainer = document.createElement("div");
+							var productNameElement = document.createElement("span");
+							productNameElement.innerText = cartData.productName;
+							var quantityElement = document.createElement("span");
+							quantityElement.innerText = ` - ${cartData.quantity}個`;
+							var totalPrice = price * cartData.quantity;
+							var priceElement = document.createElement("span");
+							priceElement.innerText = ` - 價格: $${totalPrice}`;
+							
+							cartItemContainer.appendChild(productNameElement);
+							cartItemContainer.appendChild(quantityElement);
+							cartItemContainer.appendChild(priceElement);
+							
+							document.getElementById("cart-items").appendChild(cartItemContainer);
+							}
+
+							function handleImageClick(event) {
+							event.preventDefault();
+							// Logic for handling image click event
+							}
+
+							function handleLinkClick(event) {
+							event.preventDefault();
+							// Logic for handling link click event
+							}
+
+							var cartCount = 0;
+
+							function increaseQuantity(inputId) {
+							var quantityInput = document.getElementById(inputId);
+							quantityInput.value = parseInt(quantityInput.value) + 1;
+							}
+
+							function decreaseQuantity(inputId) {
+							var quantityInput = document.getElementById(inputId);
+							var newQuantity = parseInt(quantityInput.value) - 1;
+							quantityInput.value = newQuantity < 1 ? 1 : newQuantity;
+							}
+
+							function addToCart(productName, inputId, cartIndex, price) {
+							if (confirm(`是否將 ${productName} 加入購物車？`)) {
 								var quantityInput = document.getElementById(inputId);
-								var currentQuantity = parseInt(quantityInput.value);
-								var newQuantity = currentQuantity + 1;
-								quantityInput.value = newQuantity;
-							  }
-							  
-							  function decreaseQuantity(inputId) {
-								var quantityInput = document.getElementById(inputId);
-								var currentQuantity = parseInt(quantityInput.value);
-								var newQuantity = currentQuantity - 1;
-								if (newQuantity < 1) {
-								  newQuantity = 1;
-								}
-								quantityInput.value = newQuantity;
-							  }
-							  
-							  function addToCart(productName, inputId, cartIndex, price) {
-								var addToCartConfirmation = confirm("是否將 " + productName + " 加入購物車？");
-								if (addToCartConfirmation) {
-								  var quantityInput = document.getElementById(inputId);
-								  var quantity = parseInt(quantityInput.value);
-								  cartCount += quantity; // Add selected quantity to the cart count
-								  document.getElementById('cartCount').innerText = cartCount; // Update the cart count in the HTML
-							  
-								  // Add product name, quantity, and index to the cart data for later use
-								  var cartData = {
-									productName: productName,
-									quantity: quantity,
-									cartIndex: cartIndex
-								  };
-							  
-								  // Add logic here to add the product data to the cart, such as using Ajax to send an asynchronous request
-								  // Example of simulating an asynchronous request
-								  setTimeout(function () {
-									alert(productName + " 已成功加入購物車！");
-							  
-									// Assume the response from adding the data to the cart includes a new cart item ID
-									var cartItemId = 'new_cart_item_id';
-							  
-									// Update the HTML display of the cart item
-									updateCartItemHTML(cartData, cartItemId, price);
-							  
-									// Reset the quantity input field to 0
-									quantityInput.value = 0;
-								  }, 1000);
-								}
-							  }
-							  
+								var quantity = parseInt(quantityInput.value);
+								cartCount += quantity;
+								document.getElementById('cartCount').innerText = cartCount;
+								
+								var cartData = {
+								productName: productName,
+								quantity: quantity,
+								cartIndex: cartIndex
+								};
+								
+								setTimeout(function () {
+								alert(`${productName} 已成功加入購物車！`);
+								var cartItemId = 'new_cart_item_id';
+								updateCartItemHTML(cartData, cartItemId, price);
+								quantityInput.value = 1;
+								}, 1000);
+							}
+							}
+
 						  </script>
 						  
 						  
@@ -531,41 +476,41 @@
     <a href="#" class="back-to-top"><img src="images/up-arrows.png" style="width: 35px;height:35px;"></a>
 </div>
 
-<!--底部欄 -->
-<footer class="p-4 border-top">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3">
-                <h3>台南下營 鋐茶鵝</h3>
-            </div>
-            <div class="col-md-3">
-            <h5>關於我們</h5>
-                <ul class="list-unstyled">
-                    <li><a href="about_nologin.html" class="text-decoration">關於鋐茶鵝</a></li>
-                    <li><a href="index_nologin.html" class="text-decoration">營業資訊</a></li>
-                </ul>
-            </div>
-            <div class="col-md-3">
-                <h5>購物須知</h5>
-                <ul class="list-unstyled">
-                    <!--<li><a href="#" class="text-decoration-none text-warning">付款方式</a></li>
-                    <li><a href="#" class="text-decoration-none text-warning">運送方式</a></li>-->
-                    <li><a href="common-quest_nologin.html" class="text-decoration">常見問題</a></li>
-                </ul>
-            </div>
-            <div class="col-md-3">
-                <h5>聯絡資訊</h5>
-                <ul class="list-unstyled">
-                    <li><a href="#" class="text-decoration">LINE：官方LINE帳號</a></li>
-                    <li><a href="https://www.facebook.com/profile.php?id=100091698824828&mibextid=ZbWKwL"target="_blank" class="text-decoration">FACEBOOK：台南下營 鋐茶鵝</a></li>
-					<li><a href="mailto:angel19971314@gmail.com" class="text-decoration">E-mail：angel19971314@gmail.com</a></li>
-					<li><span style="color:#FEC107">電話：0966218624</span></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    </footer>
-    <div class="bg-warning text-center">台南下營 鋐茶鵝 © 2023</div>
+    <!--底部欄 -->
+    <footer class="p-4 border-top">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-3">
+					<h3>台南下營 鋐茶鵝</h3>
+				</div>
+				<div class="col-md-3">
+				<h5>關於我們</h5>
+					<ul class="list-unstyled">
+						<li><a href="about_nologin.html" class="text-decoration">關於鋐茶鵝</a></li>
+						<li><a href="index_nologin.html" class="text-decoration">營業資訊</a></li>
+					</ul>
+				</div>
+				<div class="col-md-3">
+					<h5>購物須知</h5>
+					<ul class="list-unstyled">
+						<!--<li><a href="#" class="text-decoration-none text-warning">付款方式</a></li>
+						<li><a href="#" class="text-decoration-none text-warning">運送方式</a></li>-->
+						<li><a href="common-quest_nologin.html" class="text-decoration">常見問題</a></li>
+					</ul>
+				</div>
+				<div class="col-md-3">
+					<h5>聯絡資訊</h5>
+					<ul class="list-unstyled">
+						<li><a href="#" class="text-decoration">LINE：官方LINE帳號</a></li>
+						<li><a href="https://www.facebook.com/profile.php?id=100091698824828&mibextid=ZbWKwL"target="_blank" class="text-decoration">FACEBOOK：台南下營 鋐茶鵝</a></li>
+						<li><a href="mailto:angel19971314@gmail.com" class="text-decoration">E-mail：angel19971314@gmail.com</a></li>
+						<li><span style="color:#FEC107">電話：0966218624</span></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		</footer>
+		<div class="bg-warning text-center">台南下營 鋐茶鵝 © 2023</div>
 	<!-- Footer -->
 		<!-- <footer id="footer">
 			<div class="inner">
