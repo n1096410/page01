@@ -55,14 +55,14 @@ if (isset($_SESSION['isLoggedIn']) && $_SESSION['isLoggedIn'] === true) {
 
     <?php
     // 資料庫連線設定
-    $host = 'localhost';
-    $user = 'root';
-    $password = '';
+    $host = '192.168.2.200';
+    $user = 'hongteag_goose';
+    $password = 'ab7777xy';
     $dbname = 'hongteag_goose';
 
     // 建立資料庫連線
     $conn = new mysqli($host, $user, $password, $dbname);
-
+    $conn->set_charset("utf8");
     // 檢查連線是否成功
     if ($conn->connect_error) {
         die("連線失敗: " . $conn->connect_error);
@@ -120,14 +120,14 @@ if (isset($_SESSION['isLoggedIn']) && $_SESSION['isLoggedIn'] === true) {
 
 <?php
 // 設定資料庫連線參數
-$host = 'localhost';
-$user = 'root';
-$password = '';
+$host = '192.168.2.200';
+$user = 'hongteag_goose';
+$password = 'ab7777xy';
 $dbname = 'hongteag_goose';
 
 // 建立資料庫連線
 $conn = new mysqli($host, $user, $password, $dbname);
-
+$conn->set_charset("utf8");
 // 檢查連線是否成功
 if ($conn->connect_error) {
     die("連線失敗: " . $conn->connect_error);
@@ -159,14 +159,14 @@ $conn->close();
 
     <?php
     // 設定資料庫連線參數
-    $host = 'localhost'; // 或 '127.0.0.1'
-    $user = 'root'; // 使用者帳號
-    $password = ''; // 使用者密碼
+    $host = '192.168.2.200'; // 或 '127.0.0.1'
+    $user = 'hongteag_goose'; // 使用者帳號
+    $password = 'ab7777xy'; // 使用者密碼
     $dbname = 'hongteag_goose'; // 資料庫名稱
 
     // 建立資料庫連線
     $conn = new mysqli($host, $user, $password, $dbname);
-
+    $conn->set_charset("utf8");                
     // 檢查連線是否成功
     if ($conn->connect_error) {
         die("連線失敗: " . $conn->connect_error);

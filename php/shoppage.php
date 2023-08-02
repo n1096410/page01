@@ -115,14 +115,14 @@
                 <!-- 每項商品 -->
                 <?php
                 // 設定資料庫連線參數
-                $host = 'localhost';
-                $user = 'root';
-                $password = '';
+                $host = '192.168.2.200';
+                $user = 'hongteag_goose';
+                $password = 'ab7777xy';
                 $dbname = 'hongteag_goose';
 
                 // 建立資料庫連線
                 $conn = new mysqli($host, $user, $password, $dbname);
-
+                $conn->set_charset("utf8");
                 // 檢查連線是否成功
                 if ($conn->connect_error) {
                     die("連線失敗: " . $conn->connect_error);
