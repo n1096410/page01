@@ -15,6 +15,7 @@ if (isset($_SESSION['isLoggedIn']) && $_SESSION['isLoggedIn'] === true) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="image/logoicon.ico" rel="shortcut icon"/>  
     <title>台南下營鋐茶鵝</title>
+    <!-- <link rel="stylesheet" href="css/main.css"> -->
     <link rel="stylesheet" type="text/css" href="css/main.css?version=<?php echo time(); ?>">
     <link rel="stylesheet" type="text/css" href="css/index.css?version=<?php echo time(); ?>">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -27,6 +28,9 @@ if (isset($_SESSION['isLoggedIn']) && $_SESSION['isLoggedIn'] === true) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 </head>
 <body>
+
+    
+        <!--navbar區塊-->
     <nav>
         <div class="navbar navbar-expand-lg p-3" style="background-color: #fede00">
             <div class = "container">
@@ -38,6 +42,7 @@ if (isset($_SESSION['isLoggedIn']) && $_SESSION['isLoggedIn'] === true) {
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a href="#" class="text-black">關於我們</a></li>
+                    <!-- <li><a href="#">商品總覽</a></li> -->
                     <li class="nav-item"><a href="shoppage.php" class="text-black">線上訂購</a></li>
                     <li class="nav-item"><a href="common-quest_nologin.php" class="text-black">常見問題</a></li>
                     <li class="nav-item"><a href="#" class="text-black">聯絡我們</a></li>
@@ -47,161 +52,96 @@ if (isset($_SESSION['isLoggedIn']) && $_SESSION['isLoggedIn'] === true) {
                             <img src="images/shopping-cart.png" width="20" height="20" class="me-2">購物車
                         </a>
                     </li>
+
                 </ul>
             </div>
             </div>
         </div>
     </nav>
 
-    <?php
-    // 資料庫連線設定
-    $host = '192.168.2.200';
-    $user = 'hongteag_goose';
-    $password = 'ab7777xy';
-    $dbname = 'hongteag_goose';
-
-    // 建立資料庫連線
-    $conn = new mysqli($host, $user, $password, $dbname);
-    $conn->set_charset("utf8");
-    // 檢查連線是否成功
-    if ($conn->connect_error) {
-        die("連線失敗: " . $conn->connect_error);
-    }
-
-    // 執行 SQL 查詢語句，獲取幻燈片圖片的資料
-    $sql = "SELECT * FROM banner";
-    $result = $conn->query($sql);
-
-    // 檢查結果集是否有資料
-    if ($result->num_rows > 0) {
-        $slideIndex = 0;
-        $indicatorIndex = 0;
-        ?>
-        <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
-            <ol class="carousel-indicators">
-                <?php while ($row = $result->fetch_assoc()) { ?>
-                    <li data-bs-target="#carouselExample" data-bs-slide-to="<?php echo $indicatorIndex; ?>" <?php if ($indicatorIndex === 0) echo 'class="active"'; ?>></li>
-                    <?php $indicatorIndex++;
-                } ?>
-            </ol>
-            <div class="carousel-inner">
-                <?php
-                mysqli_data_seek($result, 0); // 將指標設回第一筆資料
-                while ($row = $result->fetch_assoc()) {
-                    $slideClass = ($slideIndex === 0) ? 'active' : '';
-                    ?>
-                    <div class="carousel-item <?php echo $slideClass; ?>">
-                        <img src="<?php echo $row['path']; ?>" class="d-block w-100" alt="<?php echo $row['filename']; ?>">
-                    </div>
-                    <?php
-                    $slideIndex++;
-                }
-                ?>
-            </div>
-            <a class="carousel-control-prev" href="#carouselExample" role="button" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselExample" role="button" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
+<!--幻燈片區塊-->
+<div id="carouselExample" class="carousel slide" data-bs-ride="carouse1">
+    <ol class="carousel-indicators">
+        <li data-bs-target="#carouselExample" data-bs-slide-to="0" class="active"></li>
+        <li data-bs-target="#carouselExample" data-bs-slide-to="1"></li>
+        <li data-bs-target="#carouselExample" data-bs-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="images/slide1.png" class="d-block w-100" alt="Slide 1">
         </div>
+        <div class="carousel-item">
+            <img src="images/slide2.png" class="d-block w-100" alt="Slide 2">
+        </div>
+        <div class="carousel-item">
+            <img src="images/slide3.png" class="d-block w-100" alt="Slide 3">
+        </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExample" role="button" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExample" role="button" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+<!-- 最新消息區塊 -->
+    <div class="newsdiv1">
+            <h1 class="newstitle">最新消息</h1>
+<div class="newsdiv2">
+    <div class="news">
+        <div class="newstext">
+          <p class="newsdate">2023/05/01</p><p class="newsdata">最新消息一</p><br>
+          <p class="newsdate">2023/04/30</p><p class="newsdata">最新消息二</p><br>
+          <p class="newsdate">2023/04/29</p><p class="newsdata">最新消息三</p><br>
 
-        <?php
-    } else {
-        echo "資料庫中沒有幻燈片圖片資料。";
-    }
+        </div>
+</div>
 
-    // 釋放資源並關閉資料庫連線
-    $result->free_result();
-    $conn->close();
-    ?>
+</div>
+</div>
+</div>
 
-<?php
-// 設定資料庫連線參數
-$host = '192.168.2.200';
-$user = 'hongteag_goose';
-$password = 'ab7777xy';
-$dbname = 'hongteag_goose';
-
-// 建立資料庫連線
-$conn = new mysqli($host, $user, $password, $dbname);
-$conn->set_charset("utf8");
-// 檢查連線是否成功
-if ($conn->connect_error) {
-    die("連線失敗: " . $conn->connect_error);
-}
-
-// 執行 SQL 查詢語句
-$sql = "SELECT newsID, newsDate, newsContent FROM news";
-$result = $conn->query($sql);
-?>
-
-<div class="newsdiv1">
-    <h1 class="newstitle">最新消息</h1>
-    <div class="newsdiv2">
-        <div class="news">
-            <div class="newstext">
-                <?php while ($row = $result->fetch_assoc()) { ?>
-                    <p class="newsdate"><?php echo $row['newsDate']; ?></p>
-                    <p class="newsdata"><?php echo $row['newsContent']; ?></p><br>
-                <?php } ?>
+    <!--熱門品項區塊-->
+<div class="p-5 text-center_hot">
+<div class="container">
+    <h1>熱門品項</h1>
+    <br>
+    <div class="row g-1">
+        <div class="col-lg">
+            <div class="card lg">
+                <img src="images/230505_5.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a href="shoppage.html" class="btn btn-warning">前往商品</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg">
+            <div class="card lg">
+                <img src="images/230505_6.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a href="shoppage.html" class="btn btn-warning">前往商品</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg">
+            <div class="card lg">
+                <img src="images/230505_7.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a href="shoppage.html" class="btn btn-warning">前往商品</a>
+                </div>
             </div>
         </div>
     </div>
 </div>
-
-<?php
-// 關閉資料庫連線
-$conn->close();
-?>
-
-    <?php
-    // 設定資料庫連線參數
-    $host = '192.168.2.200'; // 或 '127.0.0.1'
-    $user = 'hongteag_goose'; // 使用者帳號
-    $password = 'ab7777xy'; // 使用者密碼
-    $dbname = 'hongteag_goose'; // 資料庫名稱
-
-    // 建立資料庫連線
-    $conn = new mysqli($host, $user, $password, $dbname);
-    $conn->set_charset("utf8");                
-    // 檢查連線是否成功
-    if ($conn->connect_error) {
-        die("連線失敗: " . $conn->connect_error);
-    }
-
-    // 執行 SQL 查詢語句
-    $sql = "SELECT product_name, description, image_path, price FROM popular_products";
-    $result = $conn->query($sql);
-    ?>
-
-    <div class="p-5 text-center_hot">
-        <div class="container">
-            <h1>熱門品項</h1>
-            <br>
-            <div class="row g-1">
-                <?php while ($row = $result->fetch_assoc()) { ?>
-                    <div class="col-lg">
-                        <div class="card lg">
-                            <img src="<?php echo $row['image_path']; ?>" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title"><?php echo $row['product_name']; ?></h5>
-                                <p class="card-text"><?php echo $row['description']; ?></p>
-                                <p class="card-text">價格：<?php echo $row['price']; ?></p>
-                                <a href="shoppage.html" class="btn btn-warning">前往商品</a>
-                            </div>
-                        </div>
-                    </div>
-                <?php } ?>
-            </div>
-        </div>
-    </div>
-</body>
-</html>
-
-
+</div>
 
 <!--三大堅持區塊-->
 <div class="p-5 text-center_3">
@@ -305,6 +245,7 @@ $conn->close();
 </body>
 
 <script>
+    
 
     document.addEventListener("DOMContentLoaded", function() {
     var memberLoginButton = document.querySelector(".nav-item a[data-bs-target='#login-modal']");

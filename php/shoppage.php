@@ -1,4 +1,14 @@
 <!DOCTYPE HTML>
+<?php session_start(); 
+// 檢查使用者是否已登入
+if (isset($_SESSION['isLoggedIn']) && $_SESSION['isLoggedIn'] === true) {
+    $username = $_SESSION['username']; // 獲取使用者名稱
+    $account = $_SESSION['account']; // 獲取使用者名稱
+    $loginText =  "會員：$username"; // 將登入文字設置為使用者名稱
+} else {
+    $loginText = "會員登入"; // 預設為 "會員登入"
+}
+?>  
 <!--
 	Phantom by HTML5 UP
 	html5up.net | @ajlkn
@@ -34,7 +44,7 @@
 	<nav>
 		<div class="navbar navbar-expand-lg p-3" style="background-color: #fede00">
 			<div class="container">
-				<a href="index_nologin.html"><img style="width: 280px;" src="images/logo.png"></a>
+				<a href="index_nologin.php"><img style="width: 280px;" src="images/logo.png"></a>
 				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
 					<span class="navbar-toggler-icon"></span>
 				</button>
@@ -46,7 +56,7 @@
 						<li class="nav-item"><a href="#" data-bs-toggle="modal" data-bs-target="#login-modal" class="text-black">線上訂購</a></li>
 						<li class="nav-item"><a href="common-quest_nologin.html" class="text-black">常見問題</a></li>
 						<li class="nav-item"><a href="contact_nologin.html" class="text-black">聯絡我們</a></li>
-						<li class="nav-item"><a href="#" data-bs-toggle="modal" data-bs-target="#login-modal" class="text-black">會員登入</a></li>
+						<li class="nav-item"><a href="#" data-bs-toggle="modal" data-bs-target="#login-modal" class="text-black"><?php echo $loginText; ?></a></li>
 						<ul class="navbar-nav ml-auto">
 							<li class="nav-item">
 							  <a href="#" id="cartButton" class="d-flex align-items-center text-black">
@@ -81,7 +91,7 @@
 								</div>
 								<div class="modal-footer">
                   <button class="btn btn-outline-warning" onclick="clearCart()">清空購物車</button>
-									<button class="btn btn-outline-warning" onclick="writeToDatabase()">前往結帳</button>
+									<button class="btn btn-outline-warning" onclick="generateCartIdAndWriteToDatabase()">前往結帳</button>
 								</div>
 							  </div>
 							</div>
@@ -115,14 +125,14 @@
                 <!-- 每項商品 -->
                 <?php
                 // 設定資料庫連線參數
-                $host = '192.168.2.200';
-                $user = 'hongteag_goose';
-                $password = 'ab7777xy';
+                $host = 'localhost';
+                $user = 'root';
+                $password = '';
                 $dbname = 'hongteag_goose';
 
                 // 建立資料庫連線
                 $conn = new mysqli($host, $user, $password, $dbname);
-                $conn->set_charset("utf8");
+
                 // 檢查連線是否成功
                 if ($conn->connect_error) {
                     die("連線失敗: " . $conn->connect_error);
@@ -346,6 +356,7 @@ function updateTotalPrice() {
 							}
 
     function addToCart(productName, inputId, cartIndex) {
+        
     // 使用AJAX向伺服器端API發送請求
     $.ajax({
         type: 'POST',
@@ -400,10 +411,38 @@ function updateTotalPrice() {
     });
 }
 
-// 新增function來將購物車內容寫入資料庫
-function writeToDatabase() {
-    var cartItems = JSON.parse(localStorage.getItem("cartItems"));
+function generateCartIdAndWriteToDatabase() {
+        // 生成隨機的cartId
+        var cartId = generateRandomCartId();
+        console.log("生成的cartId為：" + cartId);
+        
+        // 將cartId與購物車內容一併傳遞到後端
+        var cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+        console.log("cartItems: ", cartItems);
+    writeToDatabase(cartId, cartItems); // 傳遞cartItems參數
+    }
 
+    function generateRandomCartId() {
+        // 定義可能的字元，用於生成Cart_ID
+    var characters = '0123456789';
+    var cartId = '';
+
+    // 定義Cart_ID的長度，這裡假設是4個字元長度
+    var length = 8;
+
+    // 生成隨機的Cart_ID
+    for (var i = 0; i < length; i++) {
+        cartId += characters.charAt(Math.floor(Math.random() * characters.length));
+    }
+
+    // 返回生成的Cart_ID
+    return cartId;
+    }
+
+// 新增function來將購物車內容寫入資料庫
+function writeToDatabase(cartId,cartItems) {
+    // var cartItems = JSON.parse(localStorage.getItem("cartItems"));
+    var account = '<?php echo $_SESSION['account']; ?>';
     if (!cartItems || cartItems.length === 0) {
       console.log("購物車內沒有商品");
       return;
@@ -411,10 +450,12 @@ function writeToDatabase() {
 
 // 將購物車內的每個商品資料都加入陣列中
 for (var i = 0; i < cartItems.length; i++) {
+    cartItems[i].cartId = cartId;
+    cartItems[i].account = account; // 傳送登入的 account 值
     var productName = cartItems[i].productName;
     var quantity = cartItems[i].quantity;
     var productPrice = cartItems[i].productPrice;
-    var totalPrice = cartItems[i].totalPrice;
+    var totalPrice = cartItems[i].totalPrice;}
   
         // 使用AJAX向伺服器端API發送請求
         $.ajax({
@@ -422,10 +463,12 @@ for (var i = 0; i < cartItems.length; i++) {
       url: 'php/addtocart.php', // 新增的PHP檔案
       data: {
         cartItems: cartItems,
+        cartId:cartId,
         productName: productName,
         quantity: quantity,
         productPrice: productPrice,
-        totalPrice: totalPrice
+        totalPrice: totalPrice,
+        account: account // 傳送登入的 account 值
       },
       dataType: 'json',
       success: function (response) {
@@ -450,15 +493,33 @@ for (var i = 0; i < cartItems.length; i++) {
           var modal = bootstrap.Modal.getInstance(cartModal);
           modal.hide();
         } else {
-          console.log("寫入資料庫時發生錯誤");
+          console.log("寫入資料庫時發生錯誤"+ response.message);
         }
       },
-      error: function (error) {
-        console.error(error);
+      error: function (xhr, status, error) {
+        // 清空localStorage中的購物車資料
+        localStorage.removeItem("cartItems");
+
+// 清空購物車內的品項列表
+var cartItemsDiv = document.getElementById("cart-items");
+cartItemsDiv.innerHTML = "";
+
+// 重設購物車數量並更新畫面
+cartCount = 0;
+document.getElementById('cartCount').innerText = cartCount;
+
+// 更新購物車彈出視窗內的總金額
+updateTotalPrice();
+
+// 關閉購物車彈出視窗
+var cartModal = document.getElementById('cartModal');
+var modal = bootstrap.Modal.getInstance(cartModal);
+modal.hide();
+        console.error("AJAX 請求錯誤：", xhr, status, error);
         console.log("與伺服器通訊時發生錯誤");
       }
     });
-    }
+    //window.location.href = 'Payment.php';
   }
 
 
@@ -521,39 +582,31 @@ for (var i = 0; i < cartItems.length; i++) {
                         </div>
 
 
-<!--登入彈窗區塊，有與JS配合-->
+<!-- 登入彈窗區塊，有與JS配合 -->
 <div id="login-modal" class="modal">
     <div class="modal-dialog">
         <div class="modal-content">
-            <!-- Close button -->'
+            <!-- Close button -->
             <div class="modal-header">
-                <h5 class="modal-title">會員登入</h5>
+                <h5 class="modal-title">會員</h5>
                 <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
+                    <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-
-    
-            <!-- Login form -->
-            <form class="form1" action="show_form.php" method="post">
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="account">帳號:</label>
-                        <input type="text" id="account" name="account" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="password">密碼:</label>
-                        <input type="password" id="password" name="password" class="form-control" required>
-                    </div>
-                </div>
+            <!-- Logout form -->
+            <form class="form1" action="php/logout.php" method="post" id="logout-form">
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-outline-warning">會員登入</button>
-                    <button type="submit" class="btn btn-warning" formaction="member.php">註冊會員</button>
+                    <!-- 顯示使用者名稱 -->
+                    <span>歡迎，<?php echo $_SESSION['username']; ?></span>
+                    <!-- 登出按鈕 -->
+                    <button type="submit" class="btn btn-outline-warning" name="action" value="logout">登出</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
+
+
 <!--側邊攔-->
 <div class="sidebar">
     <a href="https://www.facebook.com/profile.php?id=100091698824828&mibextid=ZbWKwL"target="_blank"><img src="images/facebook.png" style="width: 35px;height:35px;" ></a>
@@ -604,6 +657,18 @@ for (var i = 0; i < cartItems.length; i++) {
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
 			<script>$(".footerpage").load("footer.php");</script>
+			<script>
+			document.addEventListener("DOMContentLoaded", function() {
+			var memberLoginButton = document.querySelector(".nav-item a[data-bs-target='#login-modal']");
+
+			// 檢查使用者是否已登入
+			if (<?php echo isset($_SESSION['isLoggedIn']) && $_SESSION['isLoggedIn'] === true ? 'true' : 'false'; ?>) {
+				var username = <?php echo isset($_SESSION['username']) ? json_encode($_SESSION['username']) : '""'; ?>;
+				memberLoginButton.textContent = "會員:"+username; // 修改按鈕文字為使用者名稱
+				memberLoginButton.href = "member.html?username=" + encodeURIComponent(username); // 設定跳轉連結到會員中心
+			}
+			});</script>	
 			
 	</body>
+
 </html>
