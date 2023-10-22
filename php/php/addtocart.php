@@ -44,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["cartItems"],$_POST["ca
     }
 
      // 使用 prepared statement 防止 SQL Injection
-     $stmt = $conn->prepare("INSERT INTO shoppingcart (Cart_ID, Product_ID, Sales_Quantity, Coupon_ID, TotalPrice, Account) VALUES (?, ?, ?, ?, ?, ?)");
+     $stmt = $conn->prepare("INSERT INTO shoppingcart (Purchase_OrderID	, Product_ID, Sales_Quantity, Price, TotalPrice, Account) VALUES (?, ?, ?, ?, ?, ?)");
         
    
      // 將資料綁定到 prepared statement 的參數中
@@ -56,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["cartItems"],$_POST["ca
         $account = $item["account"];
         $productId = getProductIDFromDatabase($conn, $productName); // 自行實作取得 Product_ID 的方法
 
-        $stmt->bind_param("siiddd", $cartId, $productId, $quantity, $productPrice, $totalPrice, $account);
+        $stmt->bind_param("siidds", $cartId, $productId, $quantity, $productPrice, $totalPrice, $account);
 
         // 在写入数据库之前
 error_log("Trying to insert data into database. Account: " . $account . ", CartID: " . $cartId);
@@ -69,38 +69,14 @@ error_log("Trying to insert data into database. Account: " . $account . ", CartI
         } else {
             // 寫入資料庫失敗
             error_log("Error while inserting data into database. Account: " . $account . ", CartID: " . $cartId . ", Error: " . $stmt->error);
-            echo json_encode(array("status" => "error", "message" => $error_message));
+            echo json_encode(array("status" => "error"));
         }
     }
     // 關閉 prepared statement
     $stmt->close();
     // 關閉資料庫連線
 $conn->close();
-    // 將資料綁定到 prepared statement 的參數中
-    //$stmt->bind_param("siiid", $cartId, $productId, $quantity, $productPrice, $totalPrice);
 } 
-
-
-
-// 自行實作生成隨機Cart_ID的方法
-// function generateRandomCartId()
-// {
-//      // 定義可能的字元，用於生成Cart_ID
-//      $characters = '0123456789';
-//      $cartId = '';
- 
-//      // 定義Cart_ID的長度，這裡假設是10個字元長度
-//      $length = 4;
- 
-//      // 生成隨機的Cart_ID
-//      for ($i = 0; $i < $length; $i++) {
-//          $cartId .= $characters[rand(0, strlen($characters) - 1)];
-//      }
- 
-//      // 返回生成的Cart_ID
-//      return $cartId;
-    
-// }
 
 // 自行實作取得 Product_ID 的方法
 function getProductIDFromDatabase($conn, $productName)
