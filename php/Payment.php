@@ -160,7 +160,7 @@ $conn->close();
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <div class="card p-4">
-                    <form action="php/addtoordertest.php" method="post">
+                    <form action="php/addtoorder.php" method="post">
                         <!-- 運送方式相關欄位 -->
                         <div class="mb-3">
                             <label for="shipping-method" class="form-label">選擇運送方式</label>
