@@ -128,7 +128,7 @@
                                 <div class="card-body col-md-1 d-flex justify-content-center align-items-center"><?= $order["Date"] ?></div>
                                 <div class="card-body col-md-1 d-flex justify-content-center align-items-center" id="pid"><?= $order["Purchase_OrderID"] ?></div>
                                 <div class="card-body col-md-1 d-flex justify-content-center align-items-center"><?= $order["Account"] ?></div>
-                                <div class="card-body col-md-4 d-flex  align-items-center">
+                                <div class="card-body col-md-2 d-flex  align-items-center">
                                 <?php
                                // 取得目前帳號的總購買金額
                                $currentAccountTotalPrice = $accountTotalPurchasePrice[$order["Account"]] ?? 0;
