@@ -24,20 +24,6 @@
         <div class="navbar navbar-expand-lg p-3 " style="background-color: #fede00">
             <div class = "container">
                 <a href="index_nologin.php"><img style="width: 200px;" src="images/logo.png"></a>
-                <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
-                    <span class="navbar-toggler-icon"></span>
-                </button> -->
-
-            <!-- <div class="collapse navbar-collapse" id="navbarSupportedContent"> -->
-                <!-- <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">管理者設定頁面</li> -->
-                    <!-- <li class="nav-item"><a href="about_nologin.php" class="text-black">關於我們</a></li> -->
-                    <!-- <li><a href="#">商品總覽</a></li> -->
-                    <!-- <li class="nav-item"><a href="shoppage.php" class="text-black">線上訂購</a></li>
-                    <li class="nav-item"><a href="common_quest_nologin.php" class="text-black">常見問題</a></li>
-                    <li class="nav-item"><a href="contact_nologin.php" class="text-black">聯絡我們</a></li> -->
-                <!-- </ul> -->
-            <!-- </div> -->
             </div>
         </div>
     </nav>
@@ -93,6 +79,7 @@
                     <a href="admin_order_confirmed.php" class="list-group-item list-group-item-action">待確認款項</a>
                     <a href="admin_order_havepay.php" class="list-group-item list-group-item-action">待出貨</a>
                     <a href="admin_order_ship.php" class="list-group-item list-group-item-action bg-warning">已出貨</a>
+                    <a href="admin_order_cancel.php" class="list-group-item list-group-item-action">已取消</a>
                     <div class="list-group-item list-group-item-action disabled bg-light">使用者管理</div>
                     <a href="admin_user.php" class="list-group-item list-group-item-action">使用者管理</a>
                     <div class="list-group-item list-group-item-action disabled bg-light">LINE官方帳號</div>
@@ -116,7 +103,7 @@
             </div>
             <div class="card mt-2">
                 <div class="card-header">
-                    未付款管理
+                    已出貨
                 </div>
                 <div class="card-body">
                     <?php foreach ($orders as $order) : ?>
@@ -126,7 +113,7 @@
                                 <div class="card-body col-md-1 d-flex justify-content-center align-items-center"><?= $order["Date"] ?></div>
                                 <div class="card-body col-md-1 d-flex justify-content-center align-items-center" id="pid"><?= $order["Purchase_OrderID"] ?></div>
                                 <div class="card-body col-md-1 d-flex justify-content-center align-items-center"><?= $order["Account"] ?></div>
-                                <div class="card-body col-md-4 d-flex  align-items-center"><?= $order["Address"] ?></div>
+                                <div class="card-body col-md-3 d-flex  align-items-center"><?= $order["Address"] ?></div>
                                 <div class="card-body col-md-1 d-flex justify-content-center align-items-center">
                                     <div class="form-group">
                                         <select class="form-control status-select" data-order-id="<?= $order["Purchase_OrderID"] ?>">
@@ -146,6 +133,11 @@
                                         展開
                                     </button>
                                 </div>
+                                <div class="card-body col-md-1 d-flex justify-content-center align-items-center">
+                                    <button class="btn btn-danger delete-order-btn" type="button" data-order-id="<?= $order["Purchase_OrderID"] ?>" data-username="<?= $order["Account"] ?>">
+                                        取消
+                                    </button>
+                                </div>
                             </div>
                             <div class="collapse" id="collapse<?= $order["Purchase_OrderID"] ?>">
                                 <div class="card card-body" style="margin: 10px;">
@@ -160,7 +152,7 @@
                                         </thead>
                                         <tbody>
                                             <?php
-                                            // 在这里查询数据库并插入子表格数据
+                                            // 查詢資料庫並插入子表格數據
                                             $order_id = $order["Purchase_OrderID"];
                                             $subSql = "SELECT ProductName, Purchase_Quantity, Purchase_Price FROM purchase_order WHERE Purchase_OrderID = ?";
                                             $subStmt = $conn->prepare($subSql);
@@ -266,8 +258,29 @@ function searchorder() {
 }
 </script>
 
-
-
+<!-- 取消訂單按鈕 -->
+<script>
+$(document).ready(function() {
+    // 找到所有具有 data-order-id 屬性的刪除按鈕
+    $('.delete-order-btn').on('click', function() {
+        // 獲取要刪除的訂單的 Purchase_OrderID
+        var orderId = $(this).data('order-id');
+        if (confirm("確定要取消訂單" + orderId + "嗎？，已付款訂單取消後會將cancel次數+1")) {
+        // 發送 AJAX 請求刪除訂單
+        $.ajax({
+            url: 'php/cancel_order_v2.php', // 指向刪除訂單的後端腳本
+            type: 'POST',
+            data: { orderID: orderId },
+            success: function(response) {
+                // 處理成功刪除訂單後的操作
+                alert('訂單已成功刪除');
+                location.reload();  
+            }
+        });
+        }
+    });
+});
+</script>
 
 </body>
 </html>

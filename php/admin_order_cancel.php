@@ -45,7 +45,7 @@
 
     // 執行 SQL 查詢語句
     $sql = "SELECT Purchase_OrderID, Purchase_Quantity, Purchase_Price, Status, Transfer, Date, Account, Address 
-    FROM purchase_order WHERE Status = '待確認款項'";
+    FROM purchase_order WHERE Status = '已取消'";
     $result = $conn->query($sql);
     
     // 儲存所有訂單資料的數組
@@ -76,10 +76,10 @@
                     <a href="admin_product.php" class="list-group-item list-group-item-action">商品管理</a>
                     <div class="list-group-item list-group-item-action disabled bg-light">訂單</div>
                     <a href="admin_order_nopay.php" class="list-group-item list-group-item-action">未付款</a>
-                    <a href="admin_order_confirmed.php" class="list-group-item list-group-item-action bg-warning">待確認款項</a>
+                    <a href="admin_order_confirmed.php" class="list-group-item list-group-item-action">待確認款項</a>
                     <a href="admin_order_havepay.php" class="list-group-item list-group-item-action">待出貨</a>
                     <a href="admin_order_ship.php" class="list-group-item list-group-item-action">已出貨</a>
-                    <a href="admin_order_cancel.php" class="list-group-item list-group-item-action">已取消</a>
+                    <a href="admin_order_cancel.php" class="list-group-item list-group-item-action bg-warning">已取消</a>
                     <div class="list-group-item list-group-item-action disabled bg-light">使用者管理</div>
                     <a href="admin_user.php" class="list-group-item list-group-item-action">使用者管理</a>
                     <div class="list-group-item list-group-item-action disabled bg-light">LINE官方帳號</div>
@@ -103,7 +103,7 @@
             </div>
             <div class="card mt-2">
                 <div class="card-header">
-                    待確認款項
+                    已取消管理
                 </div>
                 <div class="card-body">
                     <?php foreach ($orders as $order) : ?>
@@ -113,6 +113,7 @@
                                 <div class="card-body col-md-1 d-flex justify-content-center align-items-center"><?= $order["Date"] ?></div>
                                 <div class="card-body col-md-1 d-flex justify-content-center align-items-center" id="pid"><?= $order["Purchase_OrderID"] ?></div>
                                 <div class="card-body col-md-1 d-flex justify-content-center align-items-center"><?= $order["Account"] ?></div>
+                                <div class="card-body col-md-3 d-flex  align-items-center"><?= $order["Address"] ?></div>
                                 <div class="card-body col-md-1 d-flex justify-content-center align-items-center">
                                     <div class="form-group">
                                         <select class="form-control status-select" data-order-id="<?= $order["Purchase_OrderID"] ?>">
@@ -120,21 +121,17 @@
                                             <option value="待確認款項" <?= ($order["Status"] == '待確認款項' ? 'selected' : '') ?>>待確認款項</option>
                                             <option value="待出貨" <?= ($order["Status"] == '待出貨' ? 'selected' : '') ?>>待出貨</option>
                                             <option value="已出貨" <?= ($order["Status"] == '已出貨' ? 'selected' : '') ?>>已出貨</option>
+                                            <option value="已取消" <?= ($order["Status"] == '已取消' ? 'selected' : '') ?>>已取消</option>
                                         </select>
                                     </div>
                                
                                 </div>
                                 <div class="card-body col-md-1 d-flex justify-content-center align-items-center"><button class="btn btn-warning status-save-btn">儲存</button></div>
-                                <div class="card-body col-md-1 d-flex justify-content-center align-items-center total-purchase"></div>
+                                <div class="card-body col-md-1 d-flex justify-content-center align-items-center"><?= $order["Transfer"] ?></div>
                                 <!-- <div class="card-body col-md-1 d-flex justify-content-center align-items-center"><?= $order["Status"] ?></div> -->
                                 <div class="card-body col-md-1 d-flex justify-content-center align-items-center">
                                     <button class="btn btn-warning" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<?= $order["Purchase_OrderID"] ?>" aria-expanded="false" aria-controls="collapse<?= $order["Purchase_OrderID"] ?>">
                                         展開
-                                    </button>
-                                </div>
-                                <div class="card-body col-md-1 d-flex justify-content-center align-items-center">
-                                    <button class="btn btn-danger delete-order-btn" type="button" data-order-id="<?= $order["Purchase_OrderID"] ?>" data-username="<?= $order["Account"] ?>">
-                                        取消
                                     </button>
                                 </div>
                             </div>
@@ -149,9 +146,10 @@
                                                 <th>價格</th>
                                             </tr>
                                         </thead>
+
                                         <tbody>
                                             <?php
-                                            // 查詢資料庫並插入子表格數據
+                                            // 在这里查询数据库并插入子表格数据
                                             $order_id = $order["Purchase_OrderID"];
                                             $subSql = "SELECT ProductName, Purchase_Quantity, Purchase_Price FROM purchase_order WHERE Purchase_OrderID = ?";
                                             $subStmt = $conn->prepare($subSql);
@@ -160,28 +158,22 @@
                                                 $subStmt->bind_param("i", $order_id);
                                                 $subStmt->execute();
                                                 $subResult = $subStmt->get_result();
-                                                // 初始化總購買金額
-                                                $totalPurchasePrice = 0;
 
                                                 while ($subRow = $subResult->fetch_assoc()) {
                                                     echo '<tr>';
                                                     echo '<td>' . $subRow["ProductName"] . '</td>';
                                                     echo '<td>' . $subRow["Purchase_Quantity"] . '</td>';
                                                     echo '<td>' . $subRow["Purchase_Price"] . '</td>';
+                                                    
                                                     echo '</tr>';
-                                                     // 將購買金額累加到總購買金額
-            $totalPurchasePrice += $subRow["Purchase_Price"];
                                                 }
-                                                // 在子表格叠代完成後，輸出總購買金額
-        echo '<tr>';
-        echo '<td colspan="2">總購買金額：</td>';
-        echo '<td class="total-purchase-price">' . $totalPurchasePrice . '</td>';
-        echo '</tr>';
 
                                                 $subStmt->close();
                                             }
                                             ?>
                                         </tbody>
+                                        
+
                                     </table>
                                 </div>
                             </div>
@@ -208,16 +200,16 @@
         const selectedStatus = statusSelects[index].value;
         const orderID = statusSelects[index].getAttribute('data-order-id');
 
-        // 執行Ajax請求以更新狀態
+        // Make an Ajax request to update the status
         $.ajax({
             type: 'POST',
-            url: 'php/order_update_status.php', // 後端更改狀態腳本
+            url: 'php/order_update_status.php', // Ensure this is the correct path
             data: { orderID: orderID, status: selectedStatus },
             success: function(response) {
-            // 根據後端返回的回應顯示log
+            // Handle the response as needed
             console.log('Status updated successfully');
             
-            // 重整頁面
+            // Reload the page to reflect the changes
             location.reload();
             },
             error: function() {
@@ -233,7 +225,7 @@
 
 
 <script>
-// 用於篩選卡片的搜索功能
+// 用于筛选卡片的搜索功能
 function searchorder() {
   var input = document.getElementById("searchInput");
   var filter = input.value.toUpperCase();
@@ -250,64 +242,23 @@ function searchorder() {
 
     if (orderId && username && address ) {
       if (orderId.indexOf(filter) > -1 || username.toUpperCase().indexOf(filter) > -1 || address.toUpperCase().indexOf(filter) > -1 || transfer.toUpperCase().indexOf(filter) > -1)  {
-        card.style.display = "block"; // 顯示卡片
+        card.style.display = "block"; // 显示卡片
         hasResults = true;
       } else {
-        card.style.display = "none"; // 隱藏卡片
+        card.style.display = "none"; // 隐藏卡片
       }
     }
   });
 
   if (!hasResults) {
-    noResultsMessage.style.display = "block"; // 顯示 "沒有結果" 消息
+    noResultsMessage.style.display = "block"; // 显示 "没有结果" 消息
   } else {
-    noResultsMessage.style.display = "none"; // 隱藏消息
+    noResultsMessage.style.display = "none"; // 隐藏消息
   }
 }
 </script>
 
-<!-- 取消訂單按鈕 -->
-<script>
-$(document).ready(function() {
-    // 找到所有具有 data-order-id 屬性的刪除按鈕
-    $('.delete-order-btn').on('click', function() {
-        // 獲取要刪除的訂單的 Purchase_OrderID
-        var orderId = $(this).data('order-id');
-        if (confirm("確定要取消訂單" + orderId + "嗎？，已付款訂單取消後會將cancel次數+1")) {
-        // 發送 AJAX 請求刪除訂單
-        $.ajax({
-            url: 'php/cancel_order_v2.php', // 指向刪除訂單的後端腳本
-            type: 'POST',
-            data: { orderID: orderId },
-            success: function(response) {
-                // 處理成功刪除訂單後的操作
-                alert('訂單已成功刪除');
-                location.reload();  
-            }
-        });
-        }
-    });
-});
-</script>
 
-<script>
-    // 在頁面加載完畢後執行
-$(document).ready(function() {
-    // 遍歷所有主訂單的子表格
-    $('.order-card').each(function() {
-        var orderCard = $(this);
-        var totalPurchasePrice = 0;
 
-        // 查找與當前主訂單關聯的子表格中的總購買金額
-        orderCard.find('.total-purchase-price').each(function() {
-            totalPurchasePrice += parseFloat($(this).text()); // 將金額轉換為浮點數並累加
-        });
-
-        // 將總購買金額顯示在主訂單中
-        orderCard.find('.card-body.col-md-1.d-flex.justify-content-center.align-items-center.total-purchase').text('總金額：' + totalPurchasePrice + '元');
-    });
-});
-
-</script>
 </body>
-</html
+</html>

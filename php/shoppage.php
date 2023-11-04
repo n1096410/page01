@@ -7,6 +7,11 @@ if (isset($_SESSION['isLoggedIn']) && $_SESSION['isLoggedIn'] === true) {
     $loginText =  "會員：$username"; // 將登入文字設置為使用者名稱
 } else {
     $loginText = "會員登入"; // 預設為 "會員登入"
+    echo '<script>';
+    echo 'alert("請先登入後才可以瀏覽商品");';
+    echo 'window.location.href = "index_nologin.php";';
+    echo '</script>';
+    exit();
 }
 ?>  
 <!--
@@ -51,16 +56,16 @@ if (isset($_SESSION['isLoggedIn']) && $_SESSION['isLoggedIn'] === true) {
 	
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav ms-auto">
-						<li class="nav-item"><a href="about_nologin.html" class="text-black">關於我們</a></li>
-						<!-- <li><a href="#">商品總覽</a></li> -->
-						<li class="nav-item"><a href="#" data-bs-toggle="modal" data-bs-target="#login-modal" class="text-black">線上訂購</a></li>
-						<li class="nav-item"><a href="common-quest_nologin.html" class="text-black">常見問題</a></li>
-						<li class="nav-item"><a href="contact_nologin.html" class="text-black">聯絡我們</a></li>
+						<li class="nav-item"><a href="about_login.php" class="text-black">關於我們</a></li>
+						<li class="nav-item"><a href="shoppage.php" class="text-black">線上訂購</a></li>
+						<!-- <li class="nav-item"><a href="#" data-bs-toggle="modal" data-bs-target="#login-modal" class="text-black">線上訂購</a></li> -->
+						<li class="nav-item"><a href="common_quest_login.php" class="text-black">常見問題</a></li>
+						<li class="nav-item"><a href="contact_login.php" class="text-black">聯絡我們</a></li>
 						<li class="nav-item"><a href="#" data-bs-toggle="modal" data-bs-target="#login-modal" class="text-black"><?php echo $loginText; ?></a></li>
 						<ul class="navbar-nav ml-auto">
 							<li class="nav-item">
 							  <a href="#" id="cartButton" class="d-flex align-items-center text-black">
-								<img src="images/shopping-cart.png" width="20" height="20" class="me-2">購物車
+								<img src="images/shopping-cart.png" width="20" height="20" class="me-2">已選購商品
 								<span id="cartCount" class="cart-count"></span>
 							  </a>
 							</li>
@@ -75,7 +80,7 @@ if (isset($_SESSION['isLoggedIn']) && $_SESSION['isLoggedIn'] === true) {
 							<div class="modal-dialog">
 							  <div class="modal-content">
 								<div class="modal-header">
-								  <h5 class="modal-title">購物車</h5>
+								  <h5 class="modal-title">已選購商品</h5>
 								  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="closeCartModal()"></button>
 								</div>
 								<div class="modal-body">
@@ -90,8 +95,8 @@ if (isset($_SESSION['isLoggedIn']) && $_SESSION['isLoggedIn'] === true) {
                                  </p>
 								</div>
 								<div class="modal-footer">
-                  <button class="btn btn-outline-warning" onclick="clearCart()">清空購物車</button>
-									<button class="btn btn-outline-warning" onclick="generateCartIdAndWriteToDatabase()">前往結帳</button>
+                  <button class="btn btn-outline-warning" onclick="clearCart()">清空商品</button>
+									<button class="btn btn-outline-warning" onclick="generateCartIdAndWriteToDatabase()">加入購物車</button>
 								</div>
 							  </div>
 							</div>
@@ -100,7 +105,7 @@ if (isset($_SESSION['isLoggedIn']) && $_SESSION['isLoggedIn'] === true) {
 
 <!-- 每頁開頭頁籤區塊 -->
 <div id="logo" class="container ">
-    <i class="fa-solid fa-house ms-2" style="color: #8f8f8f; "></i>&nbsp;<a href="index_nologin.html">首頁</a> — <a href="shoppage.html">線上訂購</a>
+    <i class="fa-solid fa-house ms-2" style="color: #8f8f8f; "></i>&nbsp;<a href="index_login.php">首頁</a> — <a href="shoppage.php">線上訂購</a>
   </div>
   
   <!-- 商品頁 -->
@@ -109,10 +114,10 @@ if (isset($_SESSION['isLoggedIn']) && $_SESSION['isLoggedIn'] === true) {
       <!-- 左側固定欄位 -->
       <div class="col-md-2 mt-5">
         <div class="list-group" >
-          <a href="index_nologin.html" class="list-group-item list-group-item-action border-0 border-bottom">首頁</a>
-          <a href="about_nologin.html" class="list-group-item list-group-item-action border-0 border-bottom">關於我們</a>
-          <a href="common-quest_nologin.html" class="list-group-item list-group-item-action border-0 border-bottom">常見問題</a>
-          <a href="contact_nologin.html" class="list-group-item list-group-item-action border-0 border-bottom">聯絡我們</a>
+          <a href="index_login.php" class="list-group-item list-group-item-action border-0 border-bottom">首頁</a>
+          <a href="about_login.php" class="list-group-item list-group-item-action border-0 border-bottom">關於我們</a>
+          <a href="common_quest_login.php" class="list-group-item list-group-item-action border-0 border-bottom">常見問題</a>
+          <a href="contact_login.php" class="list-group-item list-group-item-action border-0 border-bottom">聯絡我們</a>
         </div>
       </div>
       <!-- 右側商品列表 -->
@@ -412,15 +417,34 @@ function updateTotalPrice() {
 }
 
 function generateCartIdAndWriteToDatabase() {
-        // 生成隨機的cartId
-        var cartId = generateRandomCartId();
-        console.log("生成的cartId為：" + cartId);
-        
-        // 將cartId與購物車內容一併傳遞到後端
-        var cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
-        console.log("cartItems: ", cartItems);
-    writeToDatabase(cartId, cartItems); // 傳遞cartItems參數
-    }
+    // 發送 AJAX 請求來驗證用戶的 cancel 值
+    $.ajax({
+        type: 'POST',
+        url: 'php/check_cancel.php',
+        dataType: 'text',
+        success: function (response) {
+            if (response === 'allow_to_add_to_cart') {
+                // 若後端返回用戶的 cancel 值小於 3，才可以執行添加到購物車及生成cartid
+                var cartId = generateRandomCartId();
+                console.log("生成的cartId為：" + cartId);
+
+                var cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+                console.log("cartItems: ", cartItems);
+                writeToDatabase(cartId, cartItems);
+            } else if (response === 'cancel_limit_exceeded') {
+                // 若後端返回用戶的 cancel 值大於等於 3，不執行添加到購物車操作
+                alert('由於您取消訂單的次數已達到限制次數，目前已經凍結您的購物權限');
+            } else {
+                // 其他情況，例如未登入或查詢失敗
+                alert('無法獲取帳號資訊。');
+            }
+        },
+        error: function () {
+            alert('驗證用戶訊息時發生錯誤。');
+        }
+    });
+}
+
 
     function generateRandomCartId() {
         // 定義可能的字元，用於生成Cart_ID
@@ -519,7 +543,11 @@ modal.hide();
         console.log("與伺服器通訊時發生錯誤");
       }
     });
-    //window.location.href = 'Payment.php';
+    // 等待 2 秒後執行跳轉
+setTimeout(function() {
+    window.location.href = 'Payment.php';
+}, 2000); // 2000 毫秒（即 2 秒）
+
   }
 
 
@@ -598,6 +626,7 @@ modal.hide();
                 <div class="modal-footer">
                     <!-- 顯示使用者名稱 -->
                     <span>歡迎，<?php echo $_SESSION['username']; ?></span>
+                    <button type="button" class="btn btn-warning" onclick="redirectTorevise()">會員中心</button>
                     <!-- 登出按鈕 -->
                     <button type="submit" class="btn btn-outline-warning" name="action" value="logout">登出</button>
                 </div>
@@ -611,43 +640,46 @@ modal.hide();
 <div class="sidebar">
     <a href="https://www.facebook.com/profile.php?id=100091698824828&mibextid=ZbWKwL"target="_blank"><img src="images/facebook.png" style="width: 35px;height:35px;" ></a>
     <a href="https://www.instagram.com/"><img src="images/Instagram.png" style="width: 35px;height:35px;"></a>
-    <a href="https://line.me/zh-hant/"><img src="images/line.png" style="width: 35px;height:35px;"></a>
+    <a href="https://lin.ee/xkDBL1w"><img src="images/line.png" style="width: 35px;height:35px;"></a>
+    <a href="#" id="cartButton" onclick="openCartModal()"><img src="images/cart.png" style="width: 35px;height:35px;"></a>
     <a href="#" class="back-to-top"><img src="images/up-arrows.png" style="width: 35px;height:35px;"></a>
 </div>
 
-    <!--底部欄 -->
-    <footer class="p-4 border-top">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-3">
-					<h3>台南下營 鋐茶鵝</h3>
-				</div>
-				<div class="col-md-3">
-				<h5>關於我們</h5>
-					<ul class="list-unstyled">
-						<li><a href="about_nologin.html" class="text-decoration">關於鋐茶鵝</a></li>
-						<li><a href="index_nologin.html" class="text-decoration">營業資訊</a></li>
-					</ul>
-				</div>
-				<div class="col-md-3">
-					<h5>購物須知</h5>
-					<ul class="list-unstyled">
-						<li><a href="common-quest_nologin.html" class="text-decoration">常見問題</a></li>
-					</ul>
-				</div>
-				<div class="col-md-3">
-					<h5>聯絡資訊</h5>
-					<ul class="list-unstyled">
-						<li><a href="#" class="text-decoration">LINE：官方LINE帳號</a></li>
-						<li><a href="https://www.facebook.com/profile.php?id=100091698824828&mibextid=ZbWKwL"target="_blank" class="text-decoration">FACEBOOK：台南下營 鋐茶鵝</a></li>
-						<li><a href="mailto:angel19971314@gmail.com" class="text-decoration">E-mail：angel19971314@gmail.com</a></li>
-						<li><span style="color:#FEC107">電話：0966218624</span></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-		</footer>
-		<div class="bg-warning text-center">台南下營 鋐茶鵝 © 2023</div>
+     <!--底部欄 -->
+     <footer class="p-4 border-top">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <h3>台南下營 鋐茶鵝</h3>
+            </div>
+            <div class="col-md-3">
+            <h5>關於我們</h5>
+                <ul class="list-unstyled">
+                    <li><a href="about_login.php" class="text-decoration">關於鋐茶鵝</a></li>
+                    <li><a href="index_login.php#營業資訊" class="text-decoration">營業資訊</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3">
+                <h5>購物須知</h5>
+                <ul class="list-unstyled">
+                   <!--<li><a href="#" class="text-decoration-none text-warning">付款方式</a></li>
+                    <li><a href="#" class="text-decoration-none text-warning">運送方式</a></li>-->
+                    <li><a href="common_quest_login.php" class="text-decoration">常見問題</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3">
+                <h5>聯絡資訊</h5>
+                <ul class="list-unstyled">
+                    <li><a href="https://lin.ee/xkDBL1w" class="text-decoration">LINE：官方LINE帳號</a></li>
+                    <li><a href="https://www.facebook.com/profile.php?id=100091698824828&mibextid=ZbWKwL"target="_blank" class="text-decoration">FACEBOOK：台南下營 鋐茶鵝</a></li>
+					<li><a href="mailto:angel19971314@gmail.com" class="text-decoration">E-mail：angel19971314@gmail.com</a></li>
+					<li><span style="color:#FEC107">電話：0966218624</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    </footer>
+    <div class="bg-warning text-center">台南下營 鋐茶鵝 © 2023</div>
 	
 
 		<!-- Scripts -->
@@ -658,6 +690,9 @@ modal.hide();
 			<script src="assets/js/main.js"></script>
 			<script>$(".footerpage").load("footer.php");</script>
 			<script>
+            function redirectTorevise() {
+        window.location.href = "ReviseMember.php";
+    }
 			document.addEventListener("DOMContentLoaded", function() {
 			var memberLoginButton = document.querySelector(".nav-item a[data-bs-target='#login-modal']");
 

@@ -24,20 +24,6 @@
         <div class="navbar navbar-expand-lg p-3 " style="background-color: #fede00">
             <div class = "container">
                 <a href="index_nologin.php"><img style="width: 200px;" src="images/logo.png"></a>
-                <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
-                    <span class="navbar-toggler-icon"></span>
-                </button> -->
-
-            <!-- <div class="collapse navbar-collapse" id="navbarSupportedContent"> -->
-                <!-- <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">管理者設定頁面</li> -->
-                    <!-- <li class="nav-item"><a href="about_nologin.php" class="text-black">關於我們</a></li> -->
-                    <!-- <li><a href="#">商品總覽</a></li> -->
-                    <!-- <li class="nav-item"><a href="shoppage.php" class="text-black">線上訂購</a></li>
-                    <li class="nav-item"><a href="common_quest_nologin.php" class="text-black">常見問題</a></li>
-                    <li class="nav-item"><a href="contact_nologin.php" class="text-black">聯絡我們</a></li> -->
-                <!-- </ul> -->
-            <!-- </div> -->
             </div>
         </div>
     </nav>
@@ -81,7 +67,7 @@
             }
 
             // 執行 SQL 查詢語句
-            $sql = "SELECT Account, Name, Email, Phone, Address, Member_ID FROM users";
+            $sql = "SELECT Account, Name, Email, Phone, Address, cancel FROM users";
             $result = $conn->query($sql);
 
             ?>
@@ -93,7 +79,7 @@
                     <div class="card-body">
                         <div class="row">
                             <?php
-                            // 假设 $result 包含从数据库检索的使用者资讯
+                            // 假設 $result 包含從資料庫檢索的使用者資訊
                             while ($row = $result->fetch_assoc()) {
                             ?>
                                 <div class="col-md-4">
@@ -114,6 +100,9 @@
                                                     </div>
                                                     <div class="col-md"><strong>地址</strong>: 
                                                         <span class="editable" contenteditable="false" data-field="Address"><?php echo $row["Address"]; ?></span>
+                                                    </div>
+                                                    <div class="col-md"><strong>取消訂單次數</strong>: 
+                                                        <span class="editable" contenteditable="false" data-field="cancel"><?php echo $row["cancel"]; ?></span>
                                                     </div>
                                                 <div class="col-md">
                                                     <button class="edit-btn btn btn-primary" data-id="<?php echo $row["Account"]; ?>">編輯</button>
@@ -144,9 +133,9 @@ document.addEventListener("DOMContentLoaded", function() {
     $(document).on("click", ".edit-btn", function() {
         // 找到最近的包含可编辑字段的父元素
         var editableParent = $(this).closest(".row-2");
-        // 在找到的父元素中查找带有 ".editable" 类的元素
+        // 在找到的父元素中查找帶有 ".editable" 類的元素
         var editableElements = editableParent.find(".editable");
-        // 将找到的可编辑元素的 contenteditable 属性设置为 "true"
+        // 將找到的可編輯元素的 contenteditable 屬性設置為 "true"
         editableElements.attr("contenteditable", "true");
     });
 
@@ -160,6 +149,7 @@ document.addEventListener("DOMContentLoaded", function() {
             Email: row.find("[data-field='Email']").text(),
             Phone: row.find("[data-field='Phone']").text(),
             Address: row.find("[data-field='Address']").text(),
+            Cancel: row.find("[data-field='cancel']").text(),
         };
         // 使用AJAX將數據提交到後端PHP進行更新
         $.ajax({

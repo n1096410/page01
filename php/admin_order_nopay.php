@@ -24,20 +24,6 @@
         <div class="navbar navbar-expand-lg p-3 " style="background-color: #fede00">
             <div class = "container">
                 <a href="index_nologin.php"><img style="width: 200px;" src="images/logo.png"></a>
-                <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
-                    <span class="navbar-toggler-icon"></span>
-                </button> -->
-
-            <!-- <div class="collapse navbar-collapse" id="navbarSupportedContent"> -->
-                <!-- <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">管理者設定頁面</li> -->
-                    <!-- <li class="nav-item"><a href="about_nologin.php" class="text-black">關於我們</a></li> -->
-                    <!-- <li><a href="#">商品總覽</a></li> -->
-                    <!-- <li class="nav-item"><a href="shoppage.php" class="text-black">線上訂購</a></li>
-                    <li class="nav-item"><a href="common_quest_nologin.php" class="text-black">常見問題</a></li>
-                    <li class="nav-item"><a href="contact_nologin.php" class="text-black">聯絡我們</a></li> -->
-                <!-- </ul> -->
-            <!-- </div> -->
             </div>
         </div>
     </nav>
@@ -93,6 +79,7 @@
                     <a href="admin_order_confirmed.php" class="list-group-item list-group-item-action">待確認款項</a>
                     <a href="admin_order_havepay.php" class="list-group-item list-group-item-action">待出貨</a>
                     <a href="admin_order_ship.php" class="list-group-item list-group-item-action">已出貨</a>
+                    <a href="admin_order_cancel.php" class="list-group-item list-group-item-action">已取消</a>
                     <div class="list-group-item list-group-item-action disabled bg-light">使用者管理</div>
                     <a href="admin_user.php" class="list-group-item list-group-item-action">使用者管理</a>
                     <div class="list-group-item list-group-item-action disabled bg-light">LINE官方帳號</div>
@@ -126,7 +113,7 @@
                                 <div class="card-body col-md-1 d-flex justify-content-center align-items-center"><?= $order["Date"] ?></div>
                                 <div class="card-body col-md-1 d-flex justify-content-center align-items-center" id="pid"><?= $order["Purchase_OrderID"] ?></div>
                                 <div class="card-body col-md-1 d-flex justify-content-center align-items-center"><?= $order["Account"] ?></div>
-                                <div class="card-body col-md-4 d-flex  align-items-center"><?= $order["Address"] ?></div>
+                                <div class="card-body col-md-3 d-flex  align-items-center"><?= $order["Address"] ?></div>
                                 <div class="card-body col-md-1 d-flex justify-content-center align-items-center">
                                     <div class="form-group">
                                         <select class="form-control status-select" data-order-id="<?= $order["Purchase_OrderID"] ?>">
@@ -134,6 +121,7 @@
                                             <option value="待確認款項" <?= ($order["Status"] == '待確認款項' ? 'selected' : '') ?>>待確認款項</option>
                                             <option value="待出貨" <?= ($order["Status"] == '待出貨' ? 'selected' : '') ?>>待出貨</option>
                                             <option value="已出貨" <?= ($order["Status"] == '已出貨' ? 'selected' : '') ?>>已出貨</option>
+                                            <option value="已取消" <?= ($order["Status"] == '已取消' ? 'selected' : '') ?>>已取消</option>
                                         </select>
                                     </div>
                                
